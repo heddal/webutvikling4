@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Alert, TouchableHighlight } from 'react-native';
 
 class Card extends Component {
     
@@ -19,11 +19,12 @@ class Card extends Component {
             }
         })
         return(
+            <TouchableHighlight underlayColor = 'inherit' onPress = {() => Alert.alert("HEI")}>
             <View style = {styles.container}> 
                 <View><Text> Bildet her </Text></View>
                 <View><Text> Bynavn her </Text></View>
-                <View><Text> Knapp her </Text></View>
             </View>
+            </TouchableHighlight>
         )
     }
 }

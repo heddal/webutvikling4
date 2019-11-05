@@ -1,19 +1,27 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React , { Component } from 'react';
+import { Text, View } from 'react-native';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createAppContainer } from 'react-navigation';
+import { Icon } from 'react-native-elements';
+import HomePage from './pages/HomePage';
+import ExplorePage from './pages/ExplorePage';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app</Text>
-    </View>
-  );
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const TabNavigator = createBottomTabNavigator(
+  { Home: { screen: HomePage, 
+          navigationOptions: {
+            tabBarIcon: <Icon name = "home" size = "40%" />,
+          }
   },
-});
+  Explore: { screen: ExplorePage,
+            navigationOptions: {
+              tabBarIcon: <Icon name = "search" size = "40%" />
+            } }
+        }, 
+  {tabBarOptions: {
+  activeBackgroundColor : '#3f51b5',
+  inactiveBackgroundColor : 'rgba(63, 81, 181, .5)',
+  showLabel : false,
+}});
+
+export default createAppContainer(TabNavigator);

@@ -5,7 +5,12 @@ import { createAppContainer } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import HomePage from './pages/HomePage';
 import ExplorePage from './pages/ExplorePage';
+import { createStore, applyMiddleware } from 'redux';
+import rootReducer from './reducers/index'
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 
+const store = createStore(rootReducer, applyMiddleware(thunk))
 
 const TabNavigator = createBottomTabNavigator(
   { Home: { screen: HomePage, 
@@ -24,4 +29,6 @@ const TabNavigator = createBottomTabNavigator(
   showLabel : false,
 }});
 
-export default createAppContainer(TabNavigator);
+const AppContainer = createAppContainer(TabNavigator)
+
+export default () => (<Provider store = {store}><View style = {{flex: 1}}><AppContainer /></View></Provider>);

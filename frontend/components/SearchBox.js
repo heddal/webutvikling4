@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Alert } from 'react-native';
 import { Icon } from 'react-native-elements';
+import { connect } from 'react-redux'
+import { changeSearchword } from '../actions/SearchAction'
 
 class SearchBox extends Component {
 
@@ -11,13 +13,13 @@ class SearchBox extends Component {
         }
     }
 
-    search  = ()  => {
-        if (this.state.searchWord.length === 0){
-            word = "All"
+    search  = ()  => {  
+        if (this.state.searchWord.length === 0){ //search blank, show all places
+            word = "all"
         } else {
             word = this.state.searchWord
         }
-        console.log("HEIDHK", word)
+        this.props.changeSearchword(word.toLowerCase())
     }
 
     handleSearchWord = (e) => {
@@ -45,12 +47,27 @@ class SearchBox extends Component {
 
         return(
             <View style = {{flexDirection: "row", margin: 20}}>
-                <TextInput style = {inputfield} onKeyPress = {(e) => this.handleSearchWord(e)} onSubmitEditing = {() => this.search()} />
+                <TextInput style = {inputfield} autoCorrect = "false" onKeyPress = {(e) => this.handleSearchWord(e)} onSubmitEditing = {() => this.search()} />
                 <Icon name = "search" onPress = {() => this.search()}/>
+                <Text> {this.props.word} </Text>
             </View>
         );
     }
 
 }
 
-export default SearchBox;
+const mapDispatchToProps = (dispatch) => {
+    return {
+      changeSearchword: (word) => dispatch(changeSearchword(word))
+    }
+  };
+  
+  const mapStateToProps = (state) => { //give us accsess to the data in store
+    const filter = state.filter
+    return {
+      word: filter.searchWord
+    }
+  }
+  
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(SearchBox);

@@ -12,7 +12,11 @@ class SearchBox extends Component {
     }
 
     search  = ()  => {
-        word = this.state.searchWord
+        if (this.state.searchWord.length === 0){
+            word = "All"
+        } else {
+            word = this.state.searchWord
+        }
         console.log("HEIDHK", word)
     }
 

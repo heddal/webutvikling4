@@ -1,10 +1,10 @@
-import Axios from "axios"
+import axios from "axios"
 
 
 
 
 const createURL = (input) => {
-    const API_URL = "http://it2810-10.idi.ntnu.no:3001/api/"
+    const API_URL = "http://localhost:3001/api/"
     if(input == undefined){
         return API_URL +"getData"
     }
@@ -12,7 +12,6 @@ const createURL = (input) => {
         return API_URL + "search/" +  input
     }
     if(typeof input == 'number'){
-
         return API_URL + "fiveMostPopular"
     }
 }
@@ -20,7 +19,7 @@ const createURL = (input) => {
 export const GetData = (input) => {
     const url = createURL(input)
     console.log("Her er url: ",url)
-    return Axios.get(url); 
+    return axios.get(url)
 }
 
 /*

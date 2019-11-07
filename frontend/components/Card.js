@@ -18,7 +18,6 @@ class Card extends Component {
             var locations = GetData(5)
             locations.then((data) => {console.log(data);this.setState({data: data})})
             
-
         }
     }
     

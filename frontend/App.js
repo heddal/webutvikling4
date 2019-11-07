@@ -1,5 +1,4 @@
-import React , { Component } from 'react';
-import { Text, View } from 'react-native';
+import React from 'react';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createAppContainer } from 'react-navigation';
 import { Icon } from 'react-native-elements';
@@ -10,12 +9,12 @@ import ExplorePage from './pages/ExplorePage';
 const TabNavigator = createBottomTabNavigator(
   { Home: { screen: HomePage, 
           navigationOptions: {
-            tabBarIcon: <Icon name = "home" size = "40%" />,
+            tabBarIcon: <Icon name = "home" size = {36} />,
           }
   },
   Explore: { screen: ExplorePage,
             navigationOptions: {
-              tabBarIcon: <Icon name = "search" size = "40%" />
+              tabBarIcon: <Icon name = "search" size = {36} />
             } }
         }, 
   {tabBarOptions: {

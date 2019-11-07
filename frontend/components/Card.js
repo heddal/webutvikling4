@@ -19,7 +19,7 @@ class Card extends Component {
             }
         })
         return(
-            <TouchableHighlight underlayColor = 'inherit' onPress = {() => Alert.alert("HEI")}>
+            <TouchableHighlight underlayColor = 'transparent' onPress = {() => Alert.alert("HEI")}>
             <View style = {styles.container}> 
                 <View><Text> Bildet her </Text></View>
                 <View><Text> Bynavn her </Text></View>

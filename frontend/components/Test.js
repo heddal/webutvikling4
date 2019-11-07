@@ -11,8 +11,7 @@ class Test extends Component {
 
     componentDidMount() {
         var dataen = GetAllData()
-        //console.log(" ELHRGOIEHRGOIH", data)
-        this.setState({data: dataen})
+        dataen.then((data) => this.setState({data: data}))
     }
 
 

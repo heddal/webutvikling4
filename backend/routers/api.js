@@ -15,7 +15,7 @@ router.post('/updateData', (req, res) => {
   
   
 // this is our get method to get data by id for destination page
-router.get('/getDataFrom/:id', (req, res, next) => {
+router.get('/search/:id', (req, res, next) => {
 var destinatoinID = req.params.id;
 Destinations.findById(destinatoinID, (err, data) => {
     if (err) return res.json({ success: false, error: err });
@@ -28,7 +28,7 @@ router.get('/getData', (req, res) => {
 Destinations.find((err, data) => {
     if (err) return res.json({ success: false, error: err });
     else{
-        var sorted = this.sortData(data)
+        var sorted = sortData(data, req)
         return res.json({ success: true, data: sorted });
     }
 });
@@ -36,8 +36,8 @@ Destinations.find((err, data) => {
 
 
 //get the three most popular destinations to show at the main page
-router.get('/threeMostPopular', (req, res) => {
-Destinations.find().sort({popularity: -1}).limit(3).exec(function(err, data){
+router.get('/fiveMostPopular', (req, res) => {
+Destinations.find().sort({popularity: -1}).limit(5).exec(function(err, data){
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true, data: data });
 })
@@ -48,7 +48,7 @@ const word = req.params.word.toLowerCase()
 Destinations.find({$or: [{'name': word}, {'country': word}, {'continent': word}]}, function (err, data){
     if (err) return res.json({ success: false, error: err });
     else{
-        var sorted = this.sortData(data)
+        var sorted = sortData(data, req)
         return res.json({ success: true, data: sorted });
     }
 })})
@@ -65,15 +65,7 @@ router.get('/search/:continent/:word', (req, res) => {
     
 })})
 
-//get the three most popular destinations to show at the main page
-router.get('/wordcloudPopularity', (req, res) => {
-Destinations.find().select('name popularity -_id').exec(function(err, data){
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true, data: data });
-})
-})
-
-sortData = (data) => {
+sortData = (data, req) => {
     const sorting = req.params.sort;
     if(sorting === "A-Z"){
         const sorted = data.sort((a,b) => (a.name > b.name) ? 1:-1)
@@ -88,4 +80,4 @@ sortData = (data) => {
 
 
 // append /api for our http requests
-app.use('/api', router);
+module.exports = router;

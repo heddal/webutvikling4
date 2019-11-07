@@ -2,28 +2,25 @@ import Axios from "axios"
 
 
 
-const API_URL = "http://it2810-10.idi.ntnu.no:3001/api/"
 
-export const GetAllData = () => {
-    console.log("we're in")
-    fetch(API_URL + "getData")
-        .then((data) => data.json())
-        .then((res) => {console.log("Dette er dataen: \n", res.data);return res.data})
+const createURL = (input) => {
+    const API_URL = "http://it2810-10.idi.ntnu.no:3001/api/"
+    if(input == undefined){
+        return API_URL +"getData"
+    }
+    if(typeof input == 'string'){
+        return API_URL + "search/" +  input
+    }
+    if(typeof input == 'number'){
+
+        return API_URL + "fiveMostPopular"
+    }
 }
-/*
-const GetDataFromSearch = (search) => {
-    fetch(API_URL + "search/" + search)
-        .then((data) => data.json())
-        .then((res) => {this.props.setData(res.data)})
-        .then(console.log("Satt data i redux"))
-}
 
-
-const GetDataFromId = (destinationID) => {
-    fetch(API_URL + "getDataFrom/" + destinationID)
-        .then((data) => data.json())
-        .then((res) => {this.props.setData(res.data)})
-        .then(console.log("Satt data i redux"))
+export const GetData = (input) => {
+    const url = createURL(input)
+    console.log("Her er url: ",url)
+    return Axios.get(url); 
 }
 
 /*
@@ -33,15 +30,4 @@ const UpdatePopulatiry =(destinationID, newPopularity) => {
         update: { popularity: newPopularity },
     })
 }
-
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-      setData: (data) => dispatch(setData(data)),
-      showDestination: (destinationID) => dispatch(showDestination(destinationID)),
-    }
-  };
-
-//export default connect(null, mapDispatchToProps)({GetAllData, GetDataFromSearch, GetDataFromId, UpdatePopulatiry})
-//export default connect(null, mapDispatchToProps)(GetAllData)
 */

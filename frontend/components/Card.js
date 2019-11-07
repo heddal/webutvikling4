@@ -1,7 +1,27 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Alert, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, Alert, TouchableHighlight, Image } from 'react-native';
+import { connect } from 'react-redux';
+import { GetData } from '../api/fetchers'
 
 class Card extends Component {
+    state ={
+        data: [],
+    }
+
+    componentDidMount(){
+        this.checkPage()
+    }
+
+
+    checkPage(){
+        if(this.props.page === "Home"){
+            var locations = GetData(5)
+            locations.then((data) => {console.log(data);this.setState({data: data})})
+            
+
+        }
+    }
+    
     
     render(){
         const styles = StyleSheet.create({
@@ -18,15 +38,30 @@ class Card extends Component {
                 alignItems: "center"
             }
         })
+        const { data } = this.state
+
         return(
-            <TouchableHighlight underlayColor = 'transparent' onPress = {() => Alert.alert("HEI")}>
-            <View style = {styles.container}> 
-                <View><Text> Bildet her </Text></View>
-                <View><Text> Bynavn her </Text></View>
+            <View>
+                {data.map(dat => {
+                    <TouchableHighlight underlayColor = 'transparent' onPress = {() => Alert.alert("HEI")}>
+                        <View style = {styles.container}> 
+                            <View><Image source={{uri: dat.img}}/></View>
+                            <View><Text> {dat.name} </Text></View>
+                        </View>
+                    </TouchableHighlight>
+                })}
+                
+        
             </View>
-            </TouchableHighlight>
-        )
-    }
+            
+        )}
 }
 
-export default Card;
+const mapStateToProps = (state) => { //give us accsess to the data in store
+
+    return {
+      page: state.page.page,
+    }
+  };
+
+export default connect(mapStateToProps)(Card);

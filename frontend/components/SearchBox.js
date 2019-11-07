@@ -47,7 +47,7 @@ class SearchBox extends Component {
 
         return(
             <View style = {{flexDirection: "row", margin: 20}}>
-                <TextInput style = {inputfield} autoCorrect = "false" onKeyPress = {(e) => this.handleSearchWord(e)} onSubmitEditing = {() => this.search()} />
+                <TextInput style = {inputfield} autoCorrect = {false} onKeyPress = {(e) => this.handleSearchWord(e)} onSubmitEditing = {() => this.search()} />
                 <Icon name = "search" onPress = {() => this.search()}/>
                 <Text> {this.props.word} </Text>
             </View>

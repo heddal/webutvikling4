@@ -8,6 +8,7 @@ import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers/index'
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import { View } from 'react-native'
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
 
@@ -30,4 +31,4 @@ const TabNavigator = createBottomTabNavigator(
 
 const AppContainer = createAppContainer(TabNavigator)
 
-export default () => (<Provider store = {store}><View style = {{flex: 1}}><AppContainer /></View></Provider>);
+export default () => (<Provider store = {store}><View style = {{flex: 1}}><AppContainer style={{margin: 100}}/></View></Provider>);

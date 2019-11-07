@@ -14,7 +14,7 @@ class HomePage extends Component{
         return(
             <View style={{
                 padding: 36,  
-                flex: 1,
+                flex: 1
               }}>
                 <Text style={{fontSize: 28, textAlign: "center", padding: 8}}>Welcome to Dream Destinations</Text>
                 <Text style={{fontSize: 20, textAlign: "center", padding: 8}}>Click here to see a wordcloud showing the most popular locations</Text>

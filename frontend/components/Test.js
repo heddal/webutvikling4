@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {GetAllData, GetDataFromSearch} from '../../backend/fetchers'
+import { GetAllData } from '../api/fetchers';
 import {View, Text} from 'react-native';
+import { connect } from 'react-redux';
 
 class Test extends Component {
 
@@ -9,24 +10,30 @@ class Test extends Component {
     }
 
     componentDidMount() {
-        this.getDataFromDb()
+        var dataen = GetAllData()
+        //console.log(" ELHRGOIEHRGOIH", data)
+        this.setState({data: dataen})
     }
 
-    getDataFromDb = () => {
-        this.setState({data: GetAllData()})
-    } 
+
 
     state = {  }
     render() { 
 
         return ( 
             <View>
-                <Text>{console.log(this.state.data, "\n tjohei")}</Text>
+                {console.log(this.state.data, "\n tjohei")}
             </View>
             
          );
     }
 }
 
+const mapStateToProps = (state) => { //give us accsess to the data in store
+    return {
+      data: state.data.data
+    }
+  }
+
  
-export default Test;
+export default connect(mapStateToProps)(Test);

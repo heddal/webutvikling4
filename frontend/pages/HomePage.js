@@ -36,11 +36,13 @@ class HomePage extends Component {
         </Text>
         <Card />
         <Dropdown
+          selected={this.props.dropdowns[0].index}
           dropName={this.props.dropdowns[0].menuName}
           options={this.props.dropdowns[0].options}
           changeSelected={this.props.changeSelected}
         />
         <Dropdown
+          selected={this.props.dropdowns[1].index}
           dropName={this.props.dropdowns[1].menuName}
           options={this.props.dropdowns[1].options}
           changeSelected={this.props.changeSelected}

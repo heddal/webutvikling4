@@ -14,6 +14,10 @@ class Dropdown extends React.PureComponent {
     this._menu = ref;
   };
 
+  returnsTrue = () => {
+    return true;
+  };
+
   changeMenu = index => {
     this.props.changeSelected(index, this.props.dropName);
     console.log("CHANGE_SELECTED");

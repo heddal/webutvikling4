@@ -5,7 +5,7 @@ const initState = [
     options: ["Popularity", "A - Z"]
   },
   {
-    index: 0,
+    index: 2,
     menuName: "filter_by",
     options: ["MenuItem 1", "MenuItem 2", "MenuItem 3", "MenuItem 4"]
   }

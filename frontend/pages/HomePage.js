@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
 import Card from '../components/Card'
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from '../reducers/';
@@ -18,7 +18,7 @@ class HomePage extends Component{
 
     render(){
         return(
-            <View style={{
+            <ScrollView style={{
                 padding: 36,  
                 flex: 1
               }}>
@@ -26,7 +26,7 @@ class HomePage extends Component{
                 <Text style={{fontSize: 20, textAlign: "center", padding: 8}}>Click here to see a wordcloud showing the most popular locations</Text>
                 <Text style={{fontSize: 16, textAlign: "center", padding: 8}}>Below you see the five most popular places</Text>
                 <Card/>
-            </View>
+            </ScrollView>
            /*
             
            <Provider store = {store}>

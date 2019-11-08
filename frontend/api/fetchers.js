@@ -1,10 +1,7 @@
 import axios from "axios"
 
-
-
-
 const createURL = (input) => {
-    const API_URL = "http://localhost:3001/api/"
+    const API_URL = "http://it2810-10.idi.ntnu.no:3001/api/"
     if(input == undefined){
         return API_URL +"getData"
     }
@@ -16,11 +13,12 @@ const createURL = (input) => {
     }
 }
 
-export const GetData = (input) => {
+export const GetData = async (input) => {
     const url = createURL(input)
-    console.log("Her er url: ",url)
-    return axios.get(url)
+    return await axios.get(url).catch((err) => {console.log("Error from axios: ", err)})
 }
+
+
 
 /*
 const UpdatePopulatiry =(destinationID, newPopularity) => {

@@ -19,15 +19,17 @@ class SortBy extends React.PureComponent {
 
   render() {
     return (
-      <View>
-        <Text onPress={() => Alert.alert("HEI")}>Sort by</Text>
+      <View
+        style={{
+          alignItems: "center",
+          justifyContent: "center"
+        }}
+      >
+        <Text onPress={() => Alert.alert("This is a test alert")}>Sort by</Text>
 
         <View
           style={{
-            backgroundColor: "#ff00ff",
-            flex: 1,
-            alignItems: "center",
-            justifyContent: "center"
+            backgroundColor: "#ff00ff"
           }}
         >
           <Menu
@@ -39,7 +41,6 @@ class SortBy extends React.PureComponent {
             <MenuItem onPress={this.hideMenu} disabled>
               Menu item 3
             </MenuItem>
-            <MenuDivider />
             <MenuItem onPress={this.hideMenu}>Menu item 4</MenuItem>
           </Menu>
         </View>

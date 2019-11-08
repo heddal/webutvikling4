@@ -9,19 +9,34 @@ class Dropdown extends React.PureComponent {
     this._menu = ref;
   };
 
-  hideMenu = index => {
+  changeMenu = index => {
     this.props.changeSelected(index, this.props.dropName);
-    //this._menu.hide();
+    // this.hideMenu();
+  };
+
+  hideMenu = () => {
+    this._menu.hide();
   };
 
   showMenu = () => {
     this._menu.show();
   };
 
+  getUnselectedOptions = () => {
+    const new_options = this.props.options.filter(
+      (f = (v, i) => {
+        return i !== this.props.selected;
+      })
+    );
+    return new_options;
+  };
+
   render() {
-    const items = this.props.options.map((o, i) => (
-      <MenuItem key={i} onPress={this.hideMenu(i)}>
-        {o}
+    console.log("los returnos -----", this.getUnselectedOptions());
+
+    const items = this.getUnselectedOptions().map((opt, i) => (
+      <MenuItem key={i} onPress={this.changeMenu(i)}>
+        {opt}
       </MenuItem>
     ));
     return (
@@ -43,6 +58,13 @@ class Dropdown extends React.PureComponent {
             <Text onPress={this.showMenu}>Show {this.props.dropName}</Text>
           }
         >
+          <MenuItem
+            key={this.props.selected}
+            onPress={this.changeMenu(this.props.selected)}
+          >
+            {this.props.options[this.props.selected]}
+          </MenuItem>
+          <MenuDivider />
           {items}
         </Menu>
       </View>

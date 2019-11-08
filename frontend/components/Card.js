@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Alert, TouchableHighlight, Image, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
-import { GetData } from '../api/fetchers'
+import { GetData, UpdatePopulatiry } from '../api/fetchers'
 import { ScrollView } from 'react-native-gesture-handler';
 
 
@@ -23,7 +23,7 @@ class Card extends Component {
             this.setData(5)
         if(this.props.page === "Explore"){
             if(this.props.word === "all"){
-                if(this.props.continent){
+                if(this.props.continent === 'all'){
                     this.setData()
                 }else{
                     this.setData(this.props.continent)}
@@ -33,6 +33,7 @@ class Card extends Component {
         }
         }
     }
+
     
     
     render(){

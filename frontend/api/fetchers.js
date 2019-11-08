@@ -19,12 +19,9 @@ export const GetData = async (input) => {
 }
 
 
-
-/*
-const UpdatePopulatiry =(destinationID, newPopularity) => {
-    Axios.post(API_URL + "updateData", {
+export const UpdatePopulatiry =(destinationID, newPopularity) => {
+    axios.post("http://it2810-10.idi.ntnu.no:3001/api/updateData", {
         id: destinationID,
         update: { popularity: newPopularity },
     })
 }
-*/

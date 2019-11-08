@@ -13,7 +13,7 @@ class SearchBox extends Component {
         }
     }
 
-    search  = ()  => {  
+    search  = ()  => {
         if (this.state.searchWord.length === 0){ //search blank, show all places
             word = "all"
         } else {
@@ -47,13 +47,22 @@ class SearchBox extends Component {
 
         return(
             <View style = {{flexDirection: "row", margin: 20}}>
-                <TextInput style = {inputfield} autoCorrect = {false} onKeyPress = {(e) => this.handleSearchWord(e)} onSubmitEditing = {() => this.search()} />
-                <Icon name = "search" onPress = {() => this.search()}/>
-                <Text> {this.props.word} </Text>
+                <TextInput
+                  style = {inputfield}
+                  autoCorrect = {false}
+                  onKeyPress = {(e) => this.handleSearchWord(e)}
+                  onSubmitEditing = {() => this.search()}
+                />
+                <Icon
+                  name = "search"
+                  onPress = {() => this.search()}
+                />
+                <Text>
+                  {this.props.word}
+                </Text>
             </View>
         );
     }
-
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -61,13 +70,13 @@ const mapDispatchToProps = (dispatch) => {
       changeSearchword: (word) => dispatch(changeSearchword(word))
     }
   };
-  
+
   const mapStateToProps = (state) => { //give us accsess to the data in store
     const filter = state.filter
     return {
       word: filter.searchWord
     }
   }
-  
-  
+
+
   export default connect(mapStateToProps, mapDispatchToProps)(SearchBox);

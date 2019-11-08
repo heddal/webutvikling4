@@ -42,14 +42,13 @@ class Card extends Component {
 
         return(
             <View>
-                {data.map(dat => {
                     <TouchableHighlight underlayColor = 'transparent' onPress = {() => Alert.alert("HEI")}>
                         <View style = {styles.container}> 
-                            <View><Image source={{uri: dat.img}}/></View>
-                            <View><Text> {dat.name} </Text></View>
+                            <View><Text> HEisann!</Text></View>
+                            <View><Text> HER SDDWJROJ FSKD </Text></View>
                         </View>
                     </TouchableHighlight>
-                })}
+            
                 
         
             </View>

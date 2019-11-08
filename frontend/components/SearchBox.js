@@ -16,11 +16,11 @@ class SearchBox extends Component {
     search  = ()  => {  
         Keyboard.dismiss()
         if (this.state.searchWord.length === 0){ //search blank, show all places
-            word = "all"
+            word = "All"
         } else {
             word = this.state.searchWord
         }
-        this.props.changeSearchword(word.toLowerCase())
+        this.props.changeSearchword(word)
     }
 
     handleSearchWord = (e) => {
@@ -50,7 +50,6 @@ class SearchBox extends Component {
             <View style = {{flexDirection: "row", margin: 20}}>
                 <TextInput style = {inputfield} autoCorrect = {false} onKeyPress = {(e) => this.handleSearchWord(e)} onSubmitEditing = {() => this.search()} />
                 <TouchableWithoutFeedback><Icon name = "search" onPress = {() => this.search()}/></TouchableWithoutFeedback>
-                <Text> {this.props.word} </Text>
             </View>
         );
     }

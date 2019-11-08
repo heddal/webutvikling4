@@ -27,12 +27,6 @@ class HomePage extends Component{
                 <Text style={{fontSize: 16, textAlign: "center", padding: 8}}>Below you see the five most popular places</Text>
                 <Card />
             </View>
-           /*
-            
-           <Provider store = {store}>
-               <Test/>
-           </Provider>
-           */
         )
     }
 }

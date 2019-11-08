@@ -14,15 +14,15 @@ class ExplorePage extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{ justifyContent: "center", alignItems: "center" }}>
         <SearchBox />
-        <SortBy />
         <Dropdown
           selected={this.props.dropdowns[0].index}
           dropName={this.props.dropdowns[0].menuName}
           options={this.props.dropdowns[0].options}
           changeSelected={this.props.changeSelected}
         />
+        <Text>hvorfor kommer ikke dropdown?</Text>
       </View>
     );
   }

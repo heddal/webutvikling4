@@ -13,19 +13,12 @@ class ExplorePage extends Component {
         this.props.changeSearchword("All")
     }
 
-    /*_handleLoadMore = () => {
-          () => {
-            this._fetchAllBeers();
-          }
-        );
-      };*/
-
     render(){
         const styles = StyleSheet.create({
             container: {
                 flexDirection: "column",
                 alignItems: "center",
-                marginTop: 50
+                marginTop: 50,
             },
 
             header: {

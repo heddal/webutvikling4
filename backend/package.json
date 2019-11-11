@@ -4,7 +4,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "start": "concurrently \"cd .. && cd frontend && expo start\" \"nodemon server.js\"",
+    "start": "concurrently \"cd .. && cd frontend && npm start\" \"nodemon server.js\"",
     "eject": "expo eject"
   },
   "dependencies": {

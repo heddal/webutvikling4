@@ -60,7 +60,6 @@ class Card extends Component {
             }
         })
         const { data } = this.state
-        console.log(data)
         const dataCards = data.map(dat => {
             return (
                 <TouchableHighlight key={dat._id} underlayColor = 'white' onPress = {() => Alert.alert("HEI")}>

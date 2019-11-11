@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Alert } from 'react-native';
+import { Text, View, TextInput, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux'
 import { changeSearchword } from '../actions/SearchAction'
@@ -14,6 +14,7 @@ class SearchBox extends Component {
     }
 
     search  = ()  => {  
+        Keyboard.dismiss()
         if (this.state.searchWord.length === 0){ //search blank, show all places
             word = "all"
         } else {
@@ -48,7 +49,7 @@ class SearchBox extends Component {
         return(
             <View style = {{flexDirection: "row", margin: 20}}>
                 <TextInput style = {inputfield} autoCorrect = {false} onKeyPress = {(e) => this.handleSearchWord(e)} onSubmitEditing = {() => this.search()} />
-                <Icon name = "search" onPress = {() => this.search()}/>
+                <TouchableWithoutFeedback><Icon name = "search" onPress = {() => this.search()}/></TouchableWithoutFeedback>
                 <Text> {this.props.word} </Text>
             </View>
         );

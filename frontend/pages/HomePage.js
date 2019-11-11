@@ -23,7 +23,6 @@ class HomePage extends Component{
                 flex: 1
               }}>
                 <Text style={{fontSize: 28, textAlign: "center", padding: 8}}>Welcome to Dream Destinations</Text>
-                <Text style={{fontSize: 20, textAlign: "center", padding: 8}}>Click here to see a wordcloud showing the most popular locations</Text>
                 <Text style={{fontSize: 16, textAlign: "center", padding: 8}}>Below you see the five most popular places</Text>
                 <Card/>
             </ScrollView>

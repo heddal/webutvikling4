@@ -1,18 +1,23 @@
 import React from "react";
 import { View, Text } from "react-native";
 import Menu, { MenuItem, MenuDivider } from "react-native-material-menu";
+import { connect } from "react-redux";
+import { changeSelected } from "../actions/DropdownAction";
 
 class Dropdown extends React.PureComponent {
   _menu = null;
 
   setMenuRef = ref => {
+    // console.log("This is ref::::: ", ref.state);
+    // ref.show();
+    // console.log("This is hide::::: ", ref.state);
     this._menu = ref;
   };
 
   changeMenu = index => {
     this.props.changeSelected(index, this.props.dropName);
     console.log("CHANGE_SELECTED");
-    // this.hideMenu();
+    this.hideMenu();
   };
 
   hideMenu = () => {
@@ -25,6 +30,7 @@ class Dropdown extends React.PureComponent {
 
   getUnselectedOptions = () => {
     const selected = this.props.selected;
+    console.log(selected);
     const new_options = this.props.options.filter(function(v, i) {
       return i !== selected;
     });
@@ -35,7 +41,7 @@ class Dropdown extends React.PureComponent {
     console.log("los returnos -----", this.getUnselectedOptions());
 
     const items = this.getUnselectedOptions().map((opt, i) => (
-      <MenuItem key={i} onPress={this.changeMenu()}>
+      <MenuItem key={i} onPress={i => this.changeMenu(i)}>
         {opt}
       </MenuItem>
     ));
@@ -60,7 +66,7 @@ class Dropdown extends React.PureComponent {
         >
           <MenuItem
             key={this.props.selected}
-            onPress={this.changeMenu(this.props.selected)}
+            onPress={() => this.changeMenu(this.props.selected)}
           >
             {this.props.options[this.props.selected]}
           </MenuItem>
@@ -72,4 +78,13 @@ class Dropdown extends React.PureComponent {
   }
 }
 
-export default Dropdown;
+const mapDispatchToProps = dispatch => {
+  return {
+    changeSelected
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Dropdown);

@@ -23,7 +23,6 @@ class Card extends Component {
     if (this.props.page === "Home") {
       var locations = GetData(5);
       locations.then(data => {
-        console.log(data);
         this.setState({ data: data });
       });
     }
@@ -47,25 +46,7 @@ class Card extends Component {
     });
     const { data } = this.state;
 
-    return (
-      <View>
-        {data.map(dat => {
-          <TouchableHighlight
-            underlayColor="transparent"
-            onPress={() => Alert.alert("HEI")}
-          >
-            <View style={styles.container}>
-              <View>
-                <Image source={{ uri: dat.img }} />
-              </View>
-              <View>
-                <Text> {dat.name} </Text>
-              </View>
-            </View>
-          </TouchableHighlight>;
-        })}
-      </View>
-    );
+    return <View></View>;
   }
 }
 

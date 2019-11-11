@@ -4,6 +4,7 @@ import lengthReducer from './LengthReducer';
 import filterReducer from './FilterReducer';
 import { combineReducers } from 'redux';
 import setPageReducer from './SetPageReducer';
+import dropdownReducer from './DropdownReducer';
 
 
 const rootReducer = combineReducers({
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
     sort: sortReducers,
     destination: destinationReducer,
     length: lengthReducer,
-    page: setPageReducer
+    page: setPageReducer,
+    dropdowns: dropdownReducer
 });
 
 export default rootReducer

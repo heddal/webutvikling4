@@ -8,15 +8,11 @@ class Dropdown extends React.PureComponent {
   _menu = null;
 
   setMenuRef = ref => {
-    // console.log("This is ref::::: ", ref.state);
-    // ref.show();
-    // console.log("This is hide::::: ", ref.state);
     this._menu = ref;
   };
 
   changeMenu = index => {
     this.props.changeSelected(index, this.props.dropName);
-    console.log("CHANGE_SELECTED");
     this.hideMenu();
   };
 
@@ -30,7 +26,6 @@ class Dropdown extends React.PureComponent {
 
   getUnselectedOptions = () => {
     const selected = this.props.selected;
-    console.log(selected);
     const new_options = this.props.options.filter(function(v, i) {
       return i !== selected;
     });
@@ -38,25 +33,21 @@ class Dropdown extends React.PureComponent {
   };
 
   render() {
-    console.log("los returnos -----", this.getUnselectedOptions());
-
     const items = this.getUnselectedOptions().map((opt, i) => (
-      <MenuItem key={i} onPress={i => this.changeMenu(i)}>
+      <MenuItem key={i} onPress={() => this.changeMenu(i + 1)} disable={false}>
+        {opt}
+      </MenuItem>
+    ));
+    const menuItems = this.props.options.map((opt, i) => (
+      <MenuItem
+        key={i}
+        onPress={() => this.changeMenu(i)}
+        disable={parseInt(this.props.selected) === parseInt(i)}
+      >
         {opt}
       </MenuItem>
     ));
     return (
-      // <View accessibilityRole="header">
-      //   <Text> Header </Text>
-      //   <View accessibilityRole="menu">
-      //     <View accessibilityRole="menuitem">
-      //       <Text> YI </Text>
-      //       <Text> YI </Text>
-      //       <Text> YI </Text>
-      //       <Text> YI </Text>
-      //     </View>
-      //   </View>
-      // </View>
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Menu
           ref={this.setMenuRef}
@@ -64,27 +55,11 @@ class Dropdown extends React.PureComponent {
             <Text onPress={this.showMenu}>Show {this.props.dropName}</Text>
           }
         >
-          <MenuItem
-            key={this.props.selected}
-            onPress={() => this.changeMenu(this.props.selected)}
-          >
-            {this.props.options[this.props.selected]}
-          </MenuItem>
-          <MenuDivider />
-          {items}
+          {menuItems}
         </Menu>
       </View>
     );
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    changeSelected
-  };
-};
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(Dropdown);
+export default Dropdown;

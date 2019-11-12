@@ -1,12 +1,9 @@
-export const changeSelected = (menuName, index) => {
+export const changeSelected = (index, menuName) => {
   return (dispatch, getState) => {
-    console.log("inni CHANGE_SELECTED-----------------------");
     dispatch({
       type: "CHANGE_SELECTED",
-      action: {
-        menuName,
-        index
-      }
+      index,
+      menuName
     });
   };
 };

@@ -28,25 +28,32 @@ class HomePage extends Component {
         <Text style={{ fontSize: 28, textAlign: "center", padding: 8 }}>
           Welcome to Dream Destinations
         </Text>
-        <Text style={{ fontSize: 20, textAlign: "center", padding: 8 }}>
-          Click here to see a wordcloud showing the most popular locations
-        </Text>
+        <View
+          style={{
+            flex: 1,
+            textAlign: "center",
+            padding: 8,
+            height: 50,
+            width: 50
+          }}
+        >
+          <Dropdown
+            selected={this.props.dropdowns[0].index}
+            dropName={this.props.dropdowns[0].menuName}
+            options={this.props.dropdowns[0].options}
+            changeSelected={this.props.changeSelected}
+          />
+          <Dropdown
+            selected={this.props.dropdowns[1].index}
+            dropName={this.props.dropdowns[1].menuName}
+            options={this.props.dropdowns[1].options}
+            changeSelected={this.props.changeSelected}
+          />
+        </View>
         <Text style={{ fontSize: 16, textAlign: "center", padding: 8 }}>
           Below you see the five most popular places
         </Text>
         <Card />
-        <Dropdown
-          selected={this.props.dropdowns[0].index}
-          dropName={this.props.dropdowns[0].menuName}
-          options={this.props.dropdowns[0].options}
-          changeSelected={this.props.changeSelected}
-        />
-        <Dropdown
-          selected={this.props.dropdowns[1].index}
-          dropName={this.props.dropdowns[1].menuName}
-          options={this.props.dropdowns[1].options}
-          changeSelected={this.props.changeSelected}
-        />
       </View>
       /*
 
@@ -74,7 +81,7 @@ class HomePage extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     setPage: page => dispatch(setPage(page)),
-    changeSelected
+    changeSelected: (index, menu) => dispatch(changeSelected(index, menu))
   };
 };
 

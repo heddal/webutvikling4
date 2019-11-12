@@ -2,7 +2,7 @@ const initState = [
   {
     index: 0,
     menuName: "sort_by",
-    options: ["Popularity", "A - Z"]
+    options: ["None", "Popularity", "A - Z"]
   },
   {
     index: 2,
@@ -13,16 +13,13 @@ const initState = [
 
 const dropdownReducer = (state = initState, action) => {
   const getMenuIndexByName = menuName =>
-    state.dropdowns.findIndex(menuItem => menuItem.menuName == menuName);
-
+    state.findIndex(menuItem => menuItem.menuName == menuName);
   switch (action.type) {
     case "CHANGE_SELECTED":
-      const dropdowns = state.dropdowns;
-      dropdowns[getMenuIndexByName(action.menuName)].index = action.index;
-      return {
-        ...state,
-        dropdowns
-      };
+      const chosenIndex = getMenuIndexByName(action.menuName);
+      state[getMenuIndexByName(action.menuName)].index = action.index;
+      return state;
+
     default:
       return state;
   }

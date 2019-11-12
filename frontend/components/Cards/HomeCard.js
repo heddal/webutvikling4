@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableHighlight, Image, FlatList } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight, Image, FlatList, Alert } from 'react-native';
 import { connect } from 'react-redux';
-import { GetData, UpdatePopulatiry } from '../../api/fetchers'
+import { GetData, UpdatePopulatiry, _retrieveFavourite, _storeFavourite, _removeFavourite } from '../../api/fetchers'
 import { ScrollView } from 'react-native-gesture-handler';
-import MaterialDialog from '../DetailedCard'
+import MaterialDialog from '../DetailedCard';
+import {showDestination} from '../../actions/DestinationAction'
+
 
 class Card extends Component {
     state ={
         data: [],
         dataElement: "",
         visible: false,
-        favouriteItems: []
+        favourite: "",
+        label: "SAVE AS FAVOURITE"
     }
 
     componentWillMount(){
         this.setData(5)
+        _retrieveFavourite().then((res) => this.setState({favourite: res}))
     }
 
     setData(input) {
@@ -30,14 +34,29 @@ class Card extends Component {
     }
 
 
-    addFavourite(destinationID, name){
-        //this.setState({visible: false})
-        //Alert.alert(name, "added to favourites")
+    addFavourite(destinationID, name, okLabel){
         this.setState({visible: false})
-        setTimeout(()=>{Alert.alert(name + " was added to favourites")}, 1000)
+        if(okLabel == "SAVE AS FAVOURITE"){
+            setTimeout(()=>{Alert.alert(name + " was set as favourite location")}, 1000)
+            _storeFavourite(destinationID).then((res) => this.setState({favourite: res}))
+            this.props.setFavourite(destinationID)
+            
+        }
+        else if(okLabel == "REMOVE AS FAVOURITE"){
+            setTimeout(()=>{Alert.alert(name + " was removed as favourite location")}, 1000)
+            _removeFavourite().then(() => this.setState({favourite: ""}))
+            this.props.setFavourite("")
+        }
+        
     }
 
-    
+    isFavourite(destinationID){
+        if(destinationID == this.state.favourite){
+            return "REMOVE AS FAVOURITE"
+        }
+        return "SAVE AS FAVOURITE"
+    }
+
     
     render(){
         const styles = StyleSheet.create({
@@ -81,7 +100,6 @@ class Card extends Component {
 
         const { data } = this.state
         const { dataElement } = this.state
-        
         return (
             <View>
                 <FlatList contentContainerStyle={{
@@ -103,13 +121,16 @@ class Card extends Component {
                 keyExtractor={(item, index) => index.toString()}
                 //updateCellsBatchingPeriod = {10}
                 />
+                
                  <MaterialDialog
                     title={dataElement.name}
                     scrolled
                     visible={this.state.visible}
-                    onOk={() => {console.log("Favourite was pressed"); this.addFavourite(dataElement._id, dataElement.name)}}
-                    onCancel={() => {console.log("Cancel was pressed"); this.setState({visible: false})}}
+                    okLabel = {this.isFavourite(dataElement._id)}
+                    onOk={() => {this.addFavourite(dataElement._id, dataElement.name, this.isFavourite(dataElement._id))}}
+                    onCancel={() => {this.setState({visible: false})}}
                 >
+                    
                     <ScrollView contentContainerStyle={styles.scrollViewContainer}>
                         <View style={styles.row}>
                             <Image style={styles.Image} source={{uri: dataElement.img}}/>
@@ -128,7 +149,7 @@ const mapStateToProps = (state) => { //give us accsess to the data in store
       word: state.filter.searchWord,
       continent: state.filter.continent,
       destinationID: state.destination.destinationID,
-      sort: state.sort.sortType
+      sort: state.sort.sortType,
     }
 };
 

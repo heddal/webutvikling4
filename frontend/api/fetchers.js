@@ -8,6 +8,7 @@ const createURL = (input, sorting) => {
     if(input == ""){
         return API_URL +"getData/" + sorting
     }
+    // both id and search are strings so check if it contains numbers, than it is an id
     if(typeof input == 'string'){
         var hasNumber = /\d/;
         if(hasNumber.test(input)){
@@ -24,20 +25,47 @@ const createURL = (input, sorting) => {
 // Creates proper URL and fetches the data with axios
 export const GetData = async (input, sorting) => {
     var url = createURL(input, sorting)
-    console.log(url)
     return await axios.get(url).catch((err) => {console.log("Error from axios: ", err)})
 }
 
 // Update function for when a card is clicked 
 // Updates the populatiry of that destination
-export const UpdatePopulatiry =(destinationID, newPopularity) => {
+export const UpdatePopulatiry = (destinationID, newPopularity) => {
     axios.post("http://it2810-10.idi.ntnu.no:3001/api/updateData", {
         id: destinationID,
         update: { popularity: newPopularity },
     })
 }
 
-export const _updateStorage = async () => {
-    const response = await AsyncStorage.getItem('favourites')
-    return await JSON.parse(response) || []
+
+// Methods to store and retrieve the users favourite location
+export const _retrieveFavourite = async () => {
+    try {
+        const response = await AsyncStorage.getItem('favourite');
+        if (response !== null) {
+          // We have data!!
+            console.log("The users favourite is",response);
+            return response
+        }
+      } catch (error) {
+        // Error retrieving data
+      }
 }
+export const _storeFavourite= async (destinationID) => {
+    try {
+        await AsyncStorage.setItem('favourite', destinationID);
+        return _retrieveFavourite()
+      } catch (error) {
+        // Error saving data
+      }
+}
+
+export const _removeFavourite = async () => {
+    try {
+        await AsyncStorage.removeItem('favourite');
+      } catch (error) {
+        // Error saving data
+      }
+  }
+
+

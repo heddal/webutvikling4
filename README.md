@@ -27,6 +27,13 @@ Man kan også trykke på lokasjons-kortene for å se mer informasjon om hvert st
 ## Design
 Vi har gått for et minimaslistisk design for å gjøre siden mest oversiktelig og for at den skal være enkel å bruke. Vi har for det meste brukt react sine ekstrene biblioteker, og det gjør at siden holder seg konsistent i design. 
 
+## Funksjonalitet
+
+Når det gjelder søk, så må man søke på hele byen/landet for at det skal komme opp. 
+Hadde vi hatt mer tid (og prosjektet ga mer poeng) skulle vi også fått implementert slik at man kunne søke med ufullstendige ord. 
+Feks man søker "p" og alle landene/byene som starter på "p" dukker opp. Vi har også et issue på dette med label "could be nice". 
+
+
 ## Git og kommentering
 Vi har prøvd å være flinke på å kommentere koden, samt merke hver commit med hvilken issue de tilhører. De stedene vi ikke har lagt det til er det fordi det kun committes en quick fix eller at commit ikke tilhører noen spesiell issue. 
 

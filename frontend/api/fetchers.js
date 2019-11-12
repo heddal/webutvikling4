@@ -4,9 +4,9 @@ import axios from "axios"
 // based on the input. 
 const createURL = (input) => {
     const API_URL = "http://it2810-10.idi.ntnu.no:3001/api/"
-    console.log("INPUT: ", input)
+    //console.log("INPUT: ", input)
     if(input == ""){
-        console.log(API_URL)
+        //console.log(API_URL)
         return API_URL +"getData"
     }
     if(typeof input == 'string'){
@@ -16,14 +16,14 @@ const createURL = (input) => {
         return API_URL + "fiveMostPopular"
     }
 
-    console.log("hentet ingenting")
+    //console.log("hentet ingenting")
 }
 
 // The only method that fetches data from database. 
 // Creates proper URL and fetches the data with axios
 export const GetData = async (input) => {
     const url = createURL(input)
-    console.log("URL: ", url)
+    //console.log("URL: ", url)
     return await axios.get(url).catch((err) => {console.log("Error from axios: ", err)})
 }
 

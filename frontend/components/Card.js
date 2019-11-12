@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Alert, TouchableHighlight, Image, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { GetData, UpdatePopulatiry } from '../api/fetchers'
-import { ScrollView } from 'react-native-gesture-handler';
 import { showDestination } from '../actions/DestinationAction';
 import  MaterialDialog  from './DetailedCard';
 
@@ -26,15 +25,12 @@ class Card extends Component {
        /* if(this.props.page === "Home"){
             this.setData(5)
         if(this.props.page === "Explore"){*/
-            console.log(this.props.word)
             if(this.props.word === "all"){
                 if(this.props.continent === 'all'){
-                    console.log("Henter alt")
                     this.setData("")
                 }else{
                     this.setData(this.props.continent)}
             }else if(this.props.continent === 'all'){
-                console.log("Henter etter søkeord: ", this.props.word)
                 this.setData(this.props.word)
             }else{this.setData(this.props.continent + "/" + this.props.word)}
         }
@@ -94,30 +90,34 @@ class Card extends Component {
         
         
         return (
-            <FlatList contentContainerStyle={{
-                width: 350
-            }}
-            data = {data}
-            renderItem = { ({ item }) => (<TouchableHighlight key={item._id} underlayColor = 'white' onPress = {() => Alert.alert( item.description )}>
-            <View style = {styles.container}>
-                <View><Image style={styles.Image} source={{uri: item.img}}/></View>
-                <View><Text style = {styles.name}> {item.name} </Text></View>
+            <View>
+                <FlatList contentContainerStyle={{
+                    width: 350
+                }}
+                data = {data}
+                renderItem = { ({ item }) => (
+                <TouchableHighlight key={item._id} underlayColor = 'white' onPress = {() => this.openDetailedCard(item._id, item.popularity)}>
+                    <View style = {styles.container}>
+                        <View><Image style={styles.Image} source={{uri: item.img}}/></View>
+                        <View><Text style = {styles.name}> {item.name} </Text></View>
+                    </View>
+                </TouchableHighlight>)}
+            
+                initialNumToRender = {5}
+                maxToRenderPerBatch = {10}
+                windowSize = {5}
+                //updateCellsBatchingPeriod = {10}
+                />
+
+                <MaterialDialog
+                    title={dataElement.name}
+                    visible={this.state.visible}
+                    onOk={() => console.log("OK was pressed")}
+                    onCancel={() => console.log("Cancel was pressed")}>
+                    >
+                        <Text>heiheiehi</Text>
+                </MaterialDialog>
             </View>
-        </TouchableHighlight>)}
-        
-            initialNumToRender = {5}
-            maxToRenderPerBatch = {10}
-            windowSize = {5}
-            //updateCellsBatchingPeriod = {10}
-            />
-            /*<MaterialDialog
-                title={dataElement.name}
-                visible={this.state.visible}
-                onOk={() => console.log("OK was pressed")}
-                onCancel={() => console.log("Cancel was pressed")}>
-                >
-                    <Text>heiheiehi</Text>
-            </MaterialDialog> */
             )} 
     }
 

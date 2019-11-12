@@ -89,14 +89,14 @@ const MaterialDialog = ({
                     <ActionButton
                       testID="dialog-cancel-button"
                       colorAccent={colorAccent}
-                      onPress={onCancel}
-                      label={cancelLabel}
+                      onPress={onOk}
+                      label={okLabel}
                     />
                     <ActionButton
                       testID="dialog-ok-button"
                       colorAccent={colorAccent}
-                      onPress={onOk}
-                      label={okLabel}
+                      onPress={onCancel}
+                      label={cancelLabel}
                     />
                   </View>
                 ) : null}
@@ -201,8 +201,8 @@ MaterialDialog.propTypes = {
 };
 
 MaterialDialog.defaultProps = {
-  okLabel: 'OK',
-  cancelLabel: 'CANCEL',
+  okLabel: 'ADD TO FAVOURITE',
+  cancelLabel: 'CLOSE',
   title: undefined,
   titleColor: colors.androidPrimaryTextColor,
   backgroundColor: colors.background,

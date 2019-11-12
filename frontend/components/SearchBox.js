@@ -16,7 +16,7 @@ class SearchBox extends Component {
     search  = ()  => {  
         Keyboard.dismiss()
         if (this.state.searchWord.length === 0){ //search blank, show all places
-            word = "All"
+            word = "all"
         } else {
             word = this.state.searchWord
         }

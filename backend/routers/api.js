@@ -45,6 +45,7 @@ Destinations.find().sort({popularity: -1}).limit(5).exec(function(err, data){
 
 router.get('/search/:word', (req, res, next) => {
 const word = req.params.word.toLowerCase()
+console.log("API: ", word)
 Destinations.find({$or: [{'name': word}, {'country': word}, {'continent': word}]}, function (err, data){
     if (err) return res.json({ success: false, error: err });
     else{

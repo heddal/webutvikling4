@@ -5,48 +5,37 @@ import Card from '../components/Card'
 import { setPage } from '../actions/SetPageAction';
 import { connect } from 'react-redux';
 import { changeSearchword } from '../actions/SearchAction';
+import 'react-navigation'
+
 
 class ExplorePage extends Component {
 
     componentDidMount(){
         this.props.setPage("Explore")
+        console.log(this.props.navigation.state.routeName)
         this.props.changeSearchword("All")
     }
 
+
     render(){
+
         const styles = StyleSheet.create({
-            container: {
+            container: { 
                 flexDirection: "column",
                 alignItems: "center",
                 marginTop: 50,
+                flex: 1
             },
 
             header: {
                 fontSize: 28
-            }
-        })
-
-        
-        var items = [];
-        for (var i = 0; i < 30; i++) {
-          items.push(<Card/>);
-        }
-
+            }})
 
         return(
             <View style = {styles.container}>
-                <Text style = {styles.header}> Results from "{this.props.word}"</Text>
-                <SearchBox />
-    
-                <FlatList contentContainerStyle={{
-                    width: 300
-                }}
-                initialNumToRender = {9}
-                maxToRenderPerBatch = {2}
-                data = {items}
-                renderItem = {({ item }) =>
-                <Card />}
-                />
+              <Text style = {styles.header}> Results from "{this.props.word}"</Text>
+              <SearchBox />
+              <Card />
             </View>
         )
     }

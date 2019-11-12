@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Alert, TouchableHighlight, Image, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Alert, TouchableHighlight, Image, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { GetData, UpdatePopulatiry } from '../api/fetchers'
 import { ScrollView } from 'react-native-gesture-handler';
 
-
 class Card extends Component {
     state ={
         data: [],
+        currentSerachWord: "all"
     }
 
     componentWillMount(){
@@ -19,20 +19,23 @@ class Card extends Component {
     }
 
     checkPage(){
-        if(this.props.page === "Home"){
+       /* if(this.props.page === "Home"){
             this.setData(5)
-        if(this.props.page === "Explore"){
+        if(this.props.page === "Explore"){*/
+            console.log(this.props.word)
             if(this.props.word === "all"){
                 if(this.props.continent === 'all'){
-                    this.setData()
+                    console.log("Henter alt")
+                    this.setData("")
                 }else{
                     this.setData(this.props.continent)}
             }else if(this.props.continent === 'all'){
+                console.log("Henter etter søkeord: ", this.props.word)
                 this.setData(this.props.word)
             }else{this.setData(this.props.continent + "/" + this.props.word)}
         }
-        }
-    }
+        
+    
 
     
     
@@ -50,32 +53,50 @@ class Card extends Component {
                 margin: 10,
                 padding: 10,
                 alignItems: "center",
-                height: 250,
+                height: 250
             },
             Image: {
                 width: 300,
                 height: 200,
                 resizeMode: 'contain',
                 alignSelf: "center"
+            },
+            name: {
+                textTransform: "capitalize"
             }
         })
+
+
+
+
         const { data } = this.state
-        const dataCards = data.map(dat => {
-            return (
-                <TouchableHighlight key={dat._id} underlayColor = 'white' onPress = {() => Alert.alert("HEI")}>
-                    <View style = {styles.container}>
-                        <View><Image style={styles.Image} source={{uri: dat.img}}/></View>
-                        <View><Text> {dat.name} </Text></View>
-                    </View>
-                </TouchableHighlight>
-            );
-        })
+
+        if (this.state.currentSerachWord.toLowerCase() !== this.props.word.toLowerCase()){
+            this.setState({ currentSerachWord: this.props.word })
+            this.checkPage()
+        }
+
+
+        
         
         return (
-            <ScrollView>
-                {dataCards}
-            </ScrollView>
-        )}
+            <FlatList contentContainerStyle={{
+                width: 350
+            }}
+            data = {data}
+            renderItem = { ({ item }) => (<TouchableHighlight key={item._id} underlayColor = 'white' onPress = {() => Alert.alert( item.description )}>
+            <View style = {styles.container}>
+                <View><Image style={styles.Image} source={{uri: item.img}}/></View>
+                <View><Text style = {styles.name}> {item.name} </Text></View>
+            </View>
+        </TouchableHighlight>)}
+        
+            initialNumToRender = {5}
+            maxToRenderPerBatch = {10}
+            windowSize = {5}
+            //updateCellsBatchingPeriod = {10}
+            />
+        )} 
     }
 
 

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView } from 'react-native';
-import Card from '../components/Card'
+import Card from '../components/Cards/HomeCard'
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from '../reducers/';
 import thunk from 'redux-thunk'
 import { connect } from 'react-redux';
 import { setPage } from '../actions/SetPageAction';
+import { MaterialDialog } from '../components/DetailedCard'
 
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
@@ -17,11 +18,15 @@ class HomePage extends Component {
     }
 
     render(){
-      //this.props.setPage("Home")
+
+      
+      this.props.setPage("Home")
+      console.log("HOME: ", this.props.navigation.state.routeName)
         return(
             <View style={{
                 paddingTop: 36,  
                 flex: 1,
+                flexDirection: "column",
                 alignItems: "center"
               }}>
                 <Text style={{fontSize: 28, textAlign: "center", padding: 8}}>Welcome to Dream Destinations</Text>

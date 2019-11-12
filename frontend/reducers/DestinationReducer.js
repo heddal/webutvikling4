@@ -1,5 +1,5 @@
 const initState = {
-    destinationID: ""
+    destinationID: "",
 }
 
 const destinationReducer = (state = initState, action) => {

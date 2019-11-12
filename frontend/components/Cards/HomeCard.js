@@ -8,7 +8,6 @@ import MaterialDialog from '../DetailedCard'
 class Card extends Component {
     state ={
         data: [],
-        currentSerachWord: "all",
         dataElement: "",
         visible: false
     }
@@ -20,27 +19,6 @@ class Card extends Component {
     setData(input) {
         GetData(input, this.props.sort).then((res) => this.setState({data: res.data.data}))
     }
-
-    /*checkPage(){
-        console.log("PAGEN: ", this.props.page)
-        //console.log(this.props.page === "Explore")
-        if(this.props.page === "Home"){
-            this.setData(5)}
-        if(this.props.page === "Explore"){
-            //console.log("INNE I DEN GRENIA ;))) ", this.props.word)
-            if(this.props.word === "all"){
-                if(this.props.continent === 'all'){
-                    //console.log("Henter alt")
-                    this.setData("")
-                }else{
-                    this.setData(this.props.continent)}
-            }else if(this.props.continent === 'all'){
-                //console.log("Henter etter søkeord: ", this.props.word)
-                this.setData(this.props.word)
-            }else{this.setData(this.props.continent + "/" + this.props.word)}
-        } }*/
-        
-    
 
     openDetailedCard(destinationID, popularity){
         GetData(destinationID, "").then((res) => this.setState({dataElement: res.data.data}))
@@ -101,7 +79,8 @@ class Card extends Component {
         return (
             <View>
                 <FlatList contentContainerStyle={{
-                    width: 350
+                    width: 350,
+                    paddingBottom: 65
                 }}
                 data = {data}
                 renderItem = { ({ item }) => (

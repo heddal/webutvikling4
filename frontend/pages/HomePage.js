@@ -26,6 +26,7 @@ class HomePage extends Component {
             <View style={{
                 paddingTop: 36,  
                 flex: 1,
+                flexDirection: "column",
                 alignItems: "center"
               }}>
                 <Text style={{fontSize: 28, textAlign: "center", padding: 8}}>Welcome to Dream Destinations</Text>

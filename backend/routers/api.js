@@ -15,23 +15,12 @@ router.post('/updateData', (req, res) => {
   
   
 // this is our get method to get data by id for destination page
-router.get('/search/:id', (req, res, next) => {
-var destinatoinID = req.params.id;
-Destinations.findById(destinatoinID, (err, data) => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true, data: data });
-});
-});
-
-// get all data
-router.get('/getData', (req, res) => {
-Destinations.find((err, data) => {
-    if (err) return res.json({ success: false, error: err });
-    else{
-        var sorted = sortData(data, req)
-        return res.json({ success: true, data: sorted });
-    }
-});
+router.get('/getFrom/:id', (req, res, next) => {
+    const destinatoinID = req.params.id;
+    Destinations.findById(destinatoinID, (err, data) => {
+        if (err) return res.json({ success: false, error: err });
+        return res.json({ success: true, data: data });
+    });
 });
 
 
@@ -43,31 +32,44 @@ Destinations.find().sort({popularity: -1}).limit(5).exec(function(err, data){
 })
 })
 
-router.get('/search/:word', (req, res, next) => {
-const word = req.params.word.toLowerCase()
-console.log("API: ", word)
-Destinations.find({$or: [{'name': word}, {'country': word}, {'continent': word}]}, function (err, data){
-    if (err) return res.json({ success: false, error: err });
-    else{
-        var sorted = sortData(data, req)
-        return res.json({ success: true, data: sorted });
-    }
+
+// get all data
+router.get('/getData/:sorting', (req, res) => {
+    const sorting = req.params.sorting
+    Destinations.find((err, data) => {
+        if (err) return res.json({ success: false, error: err });
+        else{
+            var sorted = sortData(data, sorting)
+            return res.json({ success: true, data: sorted });
+        }
+    });
+});
+
+router.get('/search/:word/:sorting', (req, res, next) => {
+    const sorting = req.params.sorting
+    const word = req.params.word.toLowerCase()
+    Destinations.find({$or: [{'name': word}, {'country': word}, {'continent': word}]}, function (err, data){
+        if (err) return res.json({ success: false, error: err });
+        else{
+            var sorted = sortData(data, sorting)
+            return res.json({ success: true, data: sorted });
+        }
 })})
 
-router.get('/search/:continent/:word', (req, res) => {
+router.get('/search/:continent/:word/:sorting', (req, res) => {
+    const sorting = req.params.sorting
     const continent = req.params.continent.toLowerCase()
     const word = req.params.word.toLowerCase()
     Destinations.find({ $and: [ {$or: [{'name': word}, {'country': word}]}, {'continent': continent} ]} , function (err, data){
     if (err) return res.json({ success: false, error: err })
     else{
-        var sorted = this.sortData(data)
+        var sorted = this.sortData(data, sorting)
         return res.json({ success: true, data: sorted });
     }
     
 })})
 
-sortData = (data, req) => {
-    const sorting = req.params.sort;
+sortData = (data, sorting) => {
     if(sorting === "A-Z"){
         const sorted = data.sort((a,b) => (a.name > b.name) ? 1:-1)
         return sorted

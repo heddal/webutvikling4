@@ -3,11 +3,15 @@ import { StyleSheet, Text, View, Alert, TouchableHighlight, Image, FlatList } fr
 import { connect } from 'react-redux';
 import { GetData, UpdatePopulatiry } from '../api/fetchers'
 import { ScrollView } from 'react-native-gesture-handler';
+import { showDestination } from '../actions/DestinationAction';
+import  MaterialDialog  from './DetailedCard';
 
 class Card extends Component {
     state ={
         data: [],
-        currentSerachWord: "all"
+        currentSerachWord: "all",
+        dataElement: [],
+        visible: false
     }
 
     componentWillMount(){
@@ -15,7 +19,7 @@ class Card extends Component {
     }
 
     setData(input) {
-        GetData(input).then((res) => this.setState({data: res.data.data}))
+        GetData(input, this.props.sort).then((res) => this.setState({data: res.data.data}))
     }
 
     checkPage(){
@@ -36,6 +40,16 @@ class Card extends Component {
         }
         
     
+
+    openDetailedCard(destinationID, popularity){
+        GetData(destinationID).then((res) => this.setState({dataElement: res.data.data, visible: true}))
+        this.props.showDestination(destinationID);
+        newPop = popularity + 1
+        UpdatePopulatiry(destinationID, newPop);
+
+
+
+    }
 
     
     
@@ -70,7 +84,7 @@ class Card extends Component {
 
 
         const { data } = this.state
-
+        const { dataElement } = this.state
         if (this.state.currentSerachWord.toLowerCase() !== this.props.word.toLowerCase()){
             this.setState({ currentSerachWord: this.props.word })
             this.checkPage()
@@ -96,7 +110,15 @@ class Card extends Component {
             windowSize = {5}
             //updateCellsBatchingPeriod = {10}
             />
-        )} 
+            /*<MaterialDialog
+                title={dataElement.name}
+                visible={this.state.visible}
+                onOk={() => console.log("OK was pressed")}
+                onCancel={() => console.log("Cancel was pressed")}>
+                >
+                    <Text>heiheiehi</Text>
+            </MaterialDialog> */
+            )} 
     }
 
 
@@ -105,8 +127,17 @@ const mapStateToProps = (state) => { //give us accsess to the data in store
     return {
       page: state.page.page,
       word: state.filter.searchWord,
-      continent: state.filter.continent
+      continent: state.filter.continent,
+      destinationID: state.destination.destinationID,
+      sort: state.sort.sortType
     }
-  };
+};
 
-export default connect(mapStateToProps)(Card);
+
+const mapDispatchToProps = (dispatch) => {
+return {
+    showDestination: (destinationID) => dispatch(showDestination(destinationID)),
+}
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Card);

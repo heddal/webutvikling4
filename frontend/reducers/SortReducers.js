@@ -1,7 +1,7 @@
 // sort reducers for the locations
 
 const sortReducersDefaultState = {
-    sortType: ""
+    sortType: "none"
 };
 
 const sortReducers = (state = sortReducersDefaultState, action) => {

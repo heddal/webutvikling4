@@ -40,8 +40,10 @@ class SearchBox extends Component {
         this.search = this.search.bind(this)
         this.handleSearchWord = this.handleSearchWord.bind(this)
         const inputfield = {
-            backgroundColor: '#EEEEEE',
+            backgroundColor: 'white',
             borderRadius: 10,
+            borderWidth: 1,
+            borderColor: 'grey',
             padding: 3,
             flex: 1
         }

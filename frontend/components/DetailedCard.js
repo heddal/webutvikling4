@@ -201,7 +201,7 @@ MaterialDialog.propTypes = {
 };
 
 MaterialDialog.defaultProps = {
-  okLabel: 'ADD TO FAVOURITE',
+  okLabel: 'SAVE AS FAVOURITE',
   cancelLabel: 'CLOSE',
   title: undefined,
   titleColor: colors.androidPrimaryTextColor,

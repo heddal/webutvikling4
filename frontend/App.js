@@ -4,6 +4,7 @@ import { createAppContainer, NavigationEvents } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import HomePage from './pages/HomePage';
 import ExplorePage from './pages/ExplorePage';
+import FavouritePage from './pages/FavouritePage';
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers/index'
 import { Provider } from 'react-redux';
@@ -25,7 +26,12 @@ const TabNavigator = createBottomTabNavigator(
             navigationOptions: {
               tabBarIcon: <Icon name = "search" size = {36} />
             },
-             }
+             },
+  Favourite: { screen: FavouritePage,
+              navigationOptions: {
+              tabBarIcon: <Icon name = "favorite" size = {36} />
+  },
+    }
         }, 
   {tabBarOptions: {
   activeBackgroundColor : '#3f51b5',

@@ -1,46 +1,48 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Alert, TouchableHighlight, Image, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Alert, TouchableHighlight, Image, FlatList, TouchableHighlightBase } from 'react-native';
 import { connect } from 'react-redux';
-import { GetData, UpdatePopulatiry } from '../api/fetchers'
+import { GetData, UpdatePopulatiry } from '../../api/fetchers'
 import { ScrollView } from 'react-native-gesture-handler';
 
 class Card extends Component {
     state ={
         data: [],
-        currentSerachWord: "all"
+        currentSerachWord: "all",
+        currentPage: ""
     }
 
     componentWillMount(){
-        this.checkPage()
+        this.setData(5)
     }
 
     setData(input) {
         GetData(input).then((res) => this.setState({data: res.data.data}))
     }
 
-    checkPage(){
-       /* if(this.props.page === "Home"){
-            this.setData(5)
-        if(this.props.page === "Explore"){*/
-            console.log(this.props.word)
+    /*checkPage(){
+        console.log("PAGEN: ", this.props.page)
+        //console.log(this.props.page === "Explore")
+        if(this.props.page === "Home"){
+            this.setData(5)}
+        if(this.props.page === "Explore"){
+            //console.log("INNE I DEN GRENIA ;))) ", this.props.word)
             if(this.props.word === "all"){
                 if(this.props.continent === 'all'){
-                    console.log("Henter alt")
+                    //console.log("Henter alt")
                     this.setData("")
                 }else{
                     this.setData(this.props.continent)}
             }else if(this.props.continent === 'all'){
-                console.log("Henter etter søkeord: ", this.props.word)
+                //console.log("Henter etter søkeord: ", this.props.word)
                 this.setData(this.props.word)
             }else{this.setData(this.props.continent + "/" + this.props.word)}
-        }
+        } }*/
         
     
 
     
     
     render(){
-
         const styles = StyleSheet.create({
             container: {
                 borderRadius: 7,
@@ -66,18 +68,7 @@ class Card extends Component {
             }
         })
 
-
-
-
         const { data } = this.state
-
-        if (this.state.currentSerachWord.toLowerCase() !== this.props.word.toLowerCase()){
-            this.setState({ currentSerachWord: this.props.word })
-            this.checkPage()
-        }
-
-
-        
         
         return (
             <FlatList contentContainerStyle={{
@@ -94,7 +85,6 @@ class Card extends Component {
             initialNumToRender = {5}
             maxToRenderPerBatch = {10}
             windowSize = {5}
-            //updateCellsBatchingPeriod = {10}
             />
         )} 
     }

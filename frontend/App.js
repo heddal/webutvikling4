@@ -9,8 +9,6 @@ import rootReducer from './reducers/index'
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { View } from 'react-native'
-import { setPage } from '../frontend/actions/SetPageAction'; 
-import { connect } from 'react-redux';
 
 
 
@@ -33,22 +31,11 @@ const TabNavigator = createBottomTabNavigator(
   activeBackgroundColor : '#3f51b5',
   inactiveBackgroundColor : 'rgba(63, 81, 181, .5)',
   showLabel : false,
-},/* resetOnBlur: true,*/ 
-  defaultNavigationOptions: ({navigation}) => ({
-  tabBarOnPress: ({ navigation , defaultHandler}) => {
-    console.log(navigation.state.routeName)
-    defaultHandler()  }
-}),
+}//, resetOnBlur: true
 
 });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setPage: (page) => dispatch(setPage(page))
-  }
-};
-
-const AppContainer =  connect(mapDispatchToProps)(createAppContainer(TabNavigator))
+const AppContainer = createAppContainer(TabNavigator)
 
 const App = (props) => {
   return (

@@ -16,6 +16,7 @@
     "mongodb": "^3.3.3",
     "mongoose": "^5.7.7",
     "nodemon": "^1.19.4",
+    "prop-types": "^15.7.2",
     "react": "16.8.3",
     "react-dom": "16.8.3",
     "react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz",

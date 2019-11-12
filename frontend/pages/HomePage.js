@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView } from 'react-native';
-import Card from '../components/Card'
+import Card from '../components/Cards/HomeCard'
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from '../reducers/';
 import thunk from 'redux-thunk'
@@ -17,7 +17,10 @@ class HomePage extends Component {
     }
 
     render(){
-      //this.props.setPage("Home")
+
+      
+      this.props.setPage("Home")
+      console.log("HOME: ", this.props.navigation.state.routeName)
         return(
             <View style={{
                 paddingTop: 36,  

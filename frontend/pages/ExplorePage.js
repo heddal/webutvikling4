@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, FlatList, Item } from 'react-native';
 import SearchBox from '../components/SearchBox';
-import Card from '../components/Card'
+import Card from '../components/Cards/ExploreCard'
 import { setPage } from '../actions/SetPageAction';
 import { connect } from 'react-redux';
 import { changeSearchword } from '../actions/SearchAction';
@@ -18,6 +18,9 @@ class ExplorePage extends Component {
 
 
     render(){
+
+      this.props.setPage("Explore")
+      console.log("EXPLORE: ", this.props.page)
 
         const styles = StyleSheet.create({
             container: { 

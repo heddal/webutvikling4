@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Alert, TouchableHighlight, Image, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Alert, TouchableHighlight, Image, FlatList, ScrollView, SafeAreaView } from 'react-native';
 import { connect } from 'react-redux';
 import { GetData, UpdatePopulatiry } from '../api/fetchers'
 import { showDestination } from '../actions/DestinationAction';
@@ -9,7 +9,7 @@ class Card extends Component {
     state ={
         data: [],
         currentSerachWord: "all",
-        dataElement: [],
+        dataElement: "",
         visible: false
     }
 
@@ -38,7 +38,8 @@ class Card extends Component {
     
 
     openDetailedCard(destinationID, popularity){
-        GetData(destinationID).then((res) => this.setState({dataElement: res.data.data, visible: true}))
+        GetData(destinationID, "").then((res) => this.setState({dataElement: res.data.data}))
+        this.setState({visible: true})
         this.props.showDestination(destinationID);
         newPop = popularity + 1
         UpdatePopulatiry(destinationID, newPop);
@@ -73,10 +74,22 @@ class Card extends Component {
             },
             name: {
                 textTransform: "capitalize"
+            },
+            scrollViewContainer: {
+                paddingTop: 8,
+
+            },
+            row: {
+                flex: 1,
+                flexDirection: 'column',
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+            },
+            text: {
+                paddingTop: 8,
             }
+            
         })
-
-
 
 
         const { data } = this.state
@@ -86,8 +99,6 @@ class Card extends Component {
             this.checkPage()
         }
 
-
-        
         
         return (
             <View>
@@ -106,16 +117,22 @@ class Card extends Component {
                 initialNumToRender = {5}
                 maxToRenderPerBatch = {10}
                 windowSize = {5}
+                keyExtractor={(item, index) => index.toString()}
                 //updateCellsBatchingPeriod = {10}
                 />
-
                 <MaterialDialog
                     title={dataElement.name}
+                    scrolled
                     visible={this.state.visible}
-                    onOk={() => console.log("OK was pressed")}
-                    onCancel={() => console.log("Cancel was pressed")}>
-                    >
-                        <Text>heiheiehi</Text>
+                    onOk={() => {console.log("OK was pressed"); this.setState({visible: false})}}
+                    onCancel={() => {console.log("Cancel was pressed"); this.setState({visible: false})}}
+                >
+                    <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+                        <View style={styles.row}>
+                            <Image style={styles.Image} source={{uri: dataElement.img}}/>
+                            <Text style={styles.text}>{dataElement.description}</Text>
+                        </View>
+                    </ScrollView>
                 </MaterialDialog>
             </View>
             )} 

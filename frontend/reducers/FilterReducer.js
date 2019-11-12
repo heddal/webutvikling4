@@ -1,6 +1,6 @@
 const initState = {
-    searchWord: '',
-    continent: ''
+    searchWord: 'all',
+    continent: 'all'
 }
 
 const filterReducer = (state = initState, action) => {

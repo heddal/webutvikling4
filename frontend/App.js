@@ -1,6 +1,6 @@
 import React from 'react';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
-import { createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
+import { createAppContainer, NavigationEvents } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import HomePage from './pages/HomePage';
 import ExplorePage from './pages/ExplorePage';
@@ -9,8 +9,13 @@ import rootReducer from './reducers/index'
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { View } from 'react-native'
+import { setPage } from '../frontend/actions/SetPageAction'; 
+import { connect } from 'react-redux';
+
+
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
+
 
 const TabNavigator = createBottomTabNavigator(
   { Home: { screen: HomePage, 
@@ -21,14 +26,41 @@ const TabNavigator = createBottomTabNavigator(
   Explore: { screen: ExplorePage,
             navigationOptions: {
               tabBarIcon: <Icon name = "search" size = {36} />
-            } }
+            },
+             }
         }, 
   {tabBarOptions: {
   activeBackgroundColor : '#3f51b5',
   inactiveBackgroundColor : 'rgba(63, 81, 181, .5)',
   showLabel : false,
-}});
+},/* resetOnBlur: true,*/ 
+  defaultNavigationOptions: ({navigation}) => ({
+  tabBarOnPress: ({ navigation , defaultHandler}) => {
+    console.log(navigation.state.routeName)
+    defaultHandler()  }
+}),
 
-const AppContainer = createAppContainer(TabNavigator)
+});
 
-export default () => (<Provider store = {store}><View style = {{flex: 1}}><AppContainer style={{margin: 100}}/></View></Provider>);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setPage: (page) => dispatch(setPage(page))
+  }
+};
+
+const AppContainer =  connect(mapDispatchToProps)(createAppContainer(TabNavigator))
+
+const App = (props) => {
+  return (
+    <Provider store = {store}>
+      <View style = {{flex: 1}}>
+        <AppContainer style={{margin: 100}}>
+        </AppContainer>
+      </View>
+    </Provider>
+  )
+}
+
+
+
+export default App;

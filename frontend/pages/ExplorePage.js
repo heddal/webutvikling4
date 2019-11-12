@@ -26,8 +26,9 @@ class ExplorePage extends Component {
             container: { 
                 flexDirection: "column",
                 alignItems: "center",
-                marginTop: 50,
-                flex: 1
+                paddingTop: 50,
+                flex: 1,
+                backgroundColor: 'aliceblue'
             },
 
             header: {
@@ -40,6 +41,7 @@ class ExplorePage extends Component {
               <SearchBox />
               <Card />
             </View>
+            
         )
     }
 }

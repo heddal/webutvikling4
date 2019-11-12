@@ -27,7 +27,8 @@ class HomePage extends Component {
                 paddingTop: 36,  
                 flex: 1,
                 flexDirection: "column",
-                alignItems: "center"
+                alignItems: "center",
+                backgroundColor: 'aliceblue'
               }}>
                 <Text style={{fontSize: 28, textAlign: "center", padding: 8}}>Welcome to Dream Destinations</Text>
                 <Text style={{fontSize: 16, textAlign: "center", padding: 8}}>Below you see the five most popular places</Text>

@@ -6,6 +6,7 @@ import rootReducer from '../reducers/';
 import thunk from 'redux-thunk'
 import { connect } from 'react-redux';
 import { setPage } from '../actions/SetPageAction';
+import { MaterialDialog } from '../components/DetailedCard'
 
 
 const store = createStore(rootReducer, applyMiddleware(thunk))

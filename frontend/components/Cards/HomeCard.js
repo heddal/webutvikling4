@@ -3,11 +3,14 @@ import { StyleSheet, Text, View, Alert, TouchableHighlight, Image, FlatList, Tou
 import { connect } from 'react-redux';
 import { GetData, UpdatePopulatiry } from '../../api/fetchers'
 import { ScrollView } from 'react-native-gesture-handler';
+import { MaterialDialog } from '../DetailedCard'
 
 class Card extends Component {
     state ={
         data: [],
         currentSerachWord: "all",
+        dataElement: "",
+        visable: false
     }
 
     componentWillMount(){

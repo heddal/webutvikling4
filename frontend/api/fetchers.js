@@ -8,13 +8,15 @@ const createURL = (input, sorting) => {
         return API_URL +"getData/" + sorting
     }
     if(typeof input == 'string'){
+        var hasNumber = /\d/;
+        if(hasNumber.test(input)){
+            return API_URL + "getFrom/" + input
+        }
         return API_URL + "search/" +  input + "/" + sorting
     }
     if(typeof input == 'number'){
         return API_URL + "fiveMostPopular"
     }
-
-    console.log("hentet ingenting")
 }
 
 // The only method that fetches data from database. 

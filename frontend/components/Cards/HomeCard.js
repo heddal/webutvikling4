@@ -9,7 +9,8 @@ class Card extends Component {
     state ={
         data: [],
         dataElement: "",
-        visible: false
+        visible: false,
+        favouriteItems: []
     }
 
     componentWillMount(){
@@ -26,9 +27,14 @@ class Card extends Component {
         this.props.showDestination(destinationID);
         newPop = popularity + 1
         UpdatePopulatiry(destinationID, newPop);
+    }
 
 
-
+    addFavourite(destinationID, name){
+        //this.setState({visible: false})
+        //Alert.alert(name, "added to favourites")
+        this.setState({visible: false})
+        setTimeout(()=>{Alert.alert(name + " was added to favourites")}, 1000)
     }
 
     
@@ -101,7 +107,7 @@ class Card extends Component {
                     title={dataElement.name}
                     scrolled
                     visible={this.state.visible}
-                    onOk={() => {console.log("OK was pressed"); this.setState({visible: false})}}
+                    onOk={() => {console.log("Favourite was pressed"); this.addFavourite(dataElement._id, dataElement.name)}}
                     onCancel={() => {console.log("Cancel was pressed"); this.setState({visible: false})}}
                 >
                     <ScrollView contentContainerStyle={styles.scrollViewContainer}>

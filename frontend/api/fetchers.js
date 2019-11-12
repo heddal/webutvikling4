@@ -1,4 +1,5 @@
 import axios from "axios"
+import { AsyncStorage } from "react-native";
 
 // Checks what the input is, and returns the correct fetch-URL
 // based on the input. 
@@ -34,4 +35,9 @@ export const UpdatePopulatiry =(destinationID, newPopularity) => {
         id: destinationID,
         update: { popularity: newPopularity },
     })
+}
+
+export const _updateStorage = async () => {
+    const response = await AsyncStorage.getItem('favourites')
+    return await JSON.parse(response) || []
 }

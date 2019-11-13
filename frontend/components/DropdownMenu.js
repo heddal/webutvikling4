@@ -1,8 +1,10 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import Menu, { MenuItem, MenuDivider } from "react-native-material-menu";
 import { connect } from "react-redux";
 import { changeSelected } from "../actions/DropdownAction";
+import { continentFilter } from '../actions/ContinentAction';
+import { sortBy } from "../actions/SortingActions";
 
 class Dropdown extends React.PureComponent {
   _menu = null;
@@ -14,6 +16,13 @@ class Dropdown extends React.PureComponent {
   changeMenu = index => {
     this.props.changeSelected(index, this.props.dropName);
     this.hideMenu();
+
+    if ( this.props.dropName === "Continent" ) {
+      //this.props.changeSearchword("oslo")
+      this.props.continentFilter(index)
+    } else if ( this.props.dropName === "Sort" ) {
+      this.props.sortBy(index)
+    }
   };
 
   hideMenu = () => {
@@ -24,31 +33,35 @@ class Dropdown extends React.PureComponent {
     this._menu.show();
   };
 
-  getUnselectedOptions = () => {
-    const selected = this.props.selected;
-    const new_options = this.props.options.filter(function(v, i) {
-      return i !== selected;
-    });
-    return new_options;
-  };
-
   render() {
-    const items = this.getUnselectedOptions().map((opt, i) => (
-      <MenuItem key={i} onPress={() => this.changeMenu(i + 1)} disable={false}>
-        {opt}
-      </MenuItem>
-    ));
+
+    const styles = StyleSheet.create({
+      menuContainer: {
+        flex: 1, 
+        alignItems: 'center', 
+        justifyContent: 'center' , 
+        padding: 3,
+        marginHorizontal: 45,
+        backgroundColor: 'rgba(63, 81, 181, .5)', /*'#3f51b5',*/
+        borderRadius: 7
+
+      }
+    })
+
+
     const menuItems = this.props.options.map((opt, i) => (
       <MenuItem
         key={i}
-        onPress={() => this.changeMenu(i)}
+        onPress={() => this.changeMenu( opt, i)}
         disable={parseInt(this.props.selected) === parseInt(i)}
       >
         {opt}
       </MenuItem>
     ));
+
+
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <View style={styles.menuContainer}>
         <Menu
           ref={this.setMenuRef}
           button={
@@ -62,4 +75,11 @@ class Dropdown extends React.PureComponent {
   }
 }
 
-export default Dropdown;
+const mapDispatchToProps = dispatch => {
+  return {
+    sortBy: type => dispatch(sortBy(type)),
+    continentFilter: continent => dispatch(continentFilter(continent))
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Dropdown);

@@ -2,11 +2,11 @@ const initState = [
   {
     index: 0,
     menuName: "Sort",
-    options: ["None", "Popularity", "A - Z"]
+    options: ["None", "Popularity", "A-Z"]
   },
   {
     index: 2,
-    menuName: "Constinent",
+    menuName: "Continent",
     options: ["All", "Africa", "America", "Asia", "Europe", "Osceania"]
   }
 ];

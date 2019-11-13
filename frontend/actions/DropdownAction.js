@@ -1,8 +1,9 @@
-export const showDestination = (destinationID, visible) => {
+export const changeSelected = (index, menuName) => {
   return (dispatch, getState) => {
     dispatch({
-      type: "SHOW_DESTINATION",
-      destinationID
+      type: "CHANGE_SELECTED",
+      index,
+      menuName
     });
   };
 };

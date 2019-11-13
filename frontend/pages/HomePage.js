@@ -6,7 +6,7 @@ import rootReducer from '../reducers/';
 import thunk from 'redux-thunk'
 import { connect } from 'react-redux';
 import { setPage } from '../actions/SetPageAction';
-import { MaterialDialog } from '../components/DetailedCard'
+import { MaterialDialog } from '../components/Cards/DetailedCard'
 
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
@@ -34,12 +34,6 @@ class HomePage extends Component {
                 <Text style={{fontSize: 16, textAlign: "center", padding: 8}}>Below you see the five most popular places</Text>
                 <Card />
             </View>
-           /*
-            
-           <Provider store = {store}>
-               <Test/>
-           </Provider>
-           */
         )
     }
 }

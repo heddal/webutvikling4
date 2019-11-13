@@ -5,17 +5,25 @@ import {
   View,
   Alert,
   TouchableHighlight,
+<<<<<<< HEAD
   Image,
   Dimensions
 } from "react-native";
 import { connect } from "react-redux";
 import { GetData, UpdatePopulatiry } from "../api/fetchers";
 import { ScrollView } from "react-native-gesture-handler";
+=======
+  Image
+} from "react-native";
+import { connect } from "react-redux";
+import { GetData } from "../api/fetchers";
+>>>>>>> 456ea9fab033cf4a499117c9068a2ab9a90e3ac8
 
 class Card extends Component {
   state = {
     data: []
   };
+<<<<<<< HEAD
 
   componentWillMount() {
     this.checkPage();
@@ -23,10 +31,16 @@ class Card extends Component {
 
   setData(input) {
     GetData(input).then(res => this.setState({ data: res.data.data }));
+=======
+
+  componentDidMount() {
+    this.checkPage();
+>>>>>>> 456ea9fab033cf4a499117c9068a2ab9a90e3ac8
   }
 
   checkPage() {
     if (this.props.page === "Home") {
+<<<<<<< HEAD
       this.setData(5);
       if (this.props.page === "Explore") {
         if (this.props.word === "all") {
@@ -41,6 +55,12 @@ class Card extends Component {
           this.setData(this.props.continent + "/" + this.props.word);
         }
       }
+=======
+      var locations = GetData(5);
+      locations.then(data => {
+        this.setState({ data: data });
+      });
+>>>>>>> 456ea9fab033cf4a499117c9068a2ab9a90e3ac8
     }
   }
 
@@ -57,6 +77,7 @@ class Card extends Component {
         backgroundColor: "white",
         margin: 10,
         padding: 10,
+<<<<<<< HEAD
         alignItems: "center",
         height: 250
       },
@@ -87,6 +108,14 @@ class Card extends Component {
       );
     });
     return <ScrollView>{dataCards}</ScrollView>;
+=======
+        alignItems: "center"
+      }
+    });
+    const { data } = this.state;
+
+    return <View></View>;
+>>>>>>> 456ea9fab033cf4a499117c9068a2ab9a90e3ac8
   }
 }
 
@@ -94,9 +123,13 @@ const mapStateToProps = state => {
   //give us accsess to the data in store
 
   return {
+<<<<<<< HEAD
     page: state.page.page,
     word: state.filter.searchWord,
     continent: state.filter.continent
+=======
+    page: state.page.page
+>>>>>>> 456ea9fab033cf4a499117c9068a2ab9a90e3ac8
   };
 };
 

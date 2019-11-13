@@ -21,7 +21,6 @@ class ExplorePage extends Component {
           dropName={this.props.dropdowns[0].menuName}
           options={this.props.dropdowns[0].options}
           changeSelected={this.props.changeSelected}
-          
         />
         <Text>hvorfor kommer ikke dropdown?</Text>
       </View>

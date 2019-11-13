@@ -37,9 +37,17 @@ class SortBy extends React.PureComponent {
             button={<Text onPress={this.showMenu}>Show menu</Text>}
           >
             <MenuItem onPress={this.hideMenu}>Menu item 1</MenuItem>
+<<<<<<< HEAD
             <MenuItem onPress={this.hideMenu} disabled>
               Menu item 3
             </MenuItem>
+=======
+            <MenuItem onPress={this.hideMenu}>Menu item 2</MenuItem>
+            <MenuItem onPress={this.hideMenu} disabled>
+              Menu item 3
+            </MenuItem>
+            <MenuItem onPress={this.hideMenu}>Menu item 4</MenuItem>
+>>>>>>> 456ea9fab033cf4a499117c9068a2ab9a90e3ac8
           </Menu>
         </View>
       </View>

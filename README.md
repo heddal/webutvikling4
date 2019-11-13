@@ -6,7 +6,6 @@ npm install react-navigation
 
 _note to self: installere mongoose? Expo? Cypress? --save på dem ?_
 
-
 1. `git clone git@gitlab.stud.idi.ntnu.no:IT2810-H19/teams/team-10/prosjekt-4.git Prosjekt_4_gruppe10 && cd Prosjekt_4_gruppe10`
 2. `cd frontend && npm install`
 3. `cd ../backend && npm install`
@@ -55,5 +54,12 @@ I dette prosjektet er master-branchen "hellig" og skal alltid ha velfungerende o
 Vi har kommentert koden på en saklig måte, og prøvd å supplere koden strategisk og konstruktivt. For å gjøre koden vår enda mer ryddig enn i prosjekt 3, har vi prøvd å gi alle komponenter og funksjoner fornuftige navn slik at man lett skal skjønne hva de er og gjør, tillegg til å gjøre ting konsistent og oversiktlig.
 
 ## Testing
+
+Run tests:
+For å kjøre:
+
+```
+npx cypress open
+```
 
 For ende-til-ende-testing har vi brykt Cypress. Da får vi testet applikasjonen tilstrekkelig på en enkel og oversiktlig måte. I tillegg er det lett å følge testene og se hva som skjer.

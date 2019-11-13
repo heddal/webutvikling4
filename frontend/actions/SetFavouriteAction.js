@@ -1,9 +1,9 @@
-export const addFavourite = (fav) => {
+export const setFavourite = (fav) => {
     return (dispatch, getState) => {
         console.log("Favourite action")
         console.log(fav)
         dispatch({
-            type: 'ADD_FAVOURITE', fav
+            type: 'SET_FAVOURITE', fav
             
         })
     }

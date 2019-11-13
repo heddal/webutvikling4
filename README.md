@@ -2,13 +2,15 @@ npm install react-navigation
 
 # Installasjon og bruk
 
-#_todo_
+#_todo_:
 
-#### _TRENGER MER HER_
+_note to self: installere mongoose? Expo? Cypress? --save på dem ?_
 
-1. Kjør `npm install` i frontend-mappen
-2. Kjør `npm install` i backend-mappen
-3. Deretter kjør `npm start` i backend-mappen
+
+1. `git clone git@gitlab.stud.idi.ntnu.no:IT2810-H19/teams/team-10/prosjekt-4.git Prosjekt_4_gruppe10 && cd Prosjekt_4_gruppe10`
+2. `cd frontend && npm install`
+3. `cd ../backend && npm install`
+4. Deretter kjør `npm start` i backend-mappen
 
 # Dokumentasjon
 

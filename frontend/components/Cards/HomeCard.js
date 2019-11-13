@@ -106,7 +106,7 @@ class Card extends Component {
             <View>
                 <FlatList contentContainerStyle={{
                     width: 350,
-                    paddingBottom: 65
+                    paddingBottom: 80
                 }}
                 data = {data}
                 renderItem = { ({ item }) => (
@@ -121,7 +121,6 @@ class Card extends Component {
                 maxToRenderPerBatch = {10}
                 windowSize = {5}
                 keyExtractor={(item, index) => index.toString()}
-                //updateCellsBatchingPeriod = {10}
                 />
                 
                  <MaterialDialog

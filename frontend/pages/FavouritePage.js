@@ -51,6 +51,21 @@ class FavouritePage extends Component {
                 backgroundColor: 'aliceblue'
             },
         })
+
+        console.log(this.state.favourite)
+        console.log("Burde det funke? ")
+        console.log(this.props.fav)
+        console.log(this.props.log === undefined)
+
+        if (this.props.fav === "" || this.props.fav === undefined){
+
+            return(
+            <View style = {styles.container}>
+                <Text style = {{fontSize: 20}}> You have not chosen a favourite destination yet! </Text>
+                <Text style = {{fontSize: 14}} > Browse our app to find to find your dream destination. </Text>
+            </View>)
+            
+        } else {
         return ( 
             <View style={styles.container}>
                 <Text style={{fontSize: 28, textAlign: "center", padding: 8}}>Your favourite destination</Text>
@@ -63,7 +78,7 @@ class FavouritePage extends Component {
 
             </View>
          );
-    }
+    }}
 }
 
 const mapStateToProps = (state) => { //give us accsess to the data in store

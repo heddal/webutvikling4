@@ -67,8 +67,8 @@ class FavouritePage extends Component {
         return ( 
             <View style={styles.container}>
                 <Text style={{fontSize: 28, textAlign: "center", padding: 8}}>Your favourite destination</Text>
-                <Text style={{fontSize: 20, textAlign: "center", padding: 8}}>{dataElement.name}</Text>
-                <Text style={{fontSize: 16, textAlign: "center", padding: 8}}>{dataElement.country}/{dataElement.continent}</Text>
+                <Text style={{fontSize: 20, textAlign: "center", padding: 8, textTransform: "capitalize"}}>{dataElement.name}</Text>
+                <Text style={{fontSize: 16, textAlign: "center", padding: 8, textTransform: "capitalize"}}>{dataElement.country}/{dataElement.continent}</Text>
                 <Image style={styles.image} source={{uri: dataElement.img}}></Image>
                 <ScrollView>
                     <Text style={{fontSize: 16, textAlign: "center", padding: 8}}>{dataElement.description}</Text>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { _retrieveFavourite, GetData } from '../api/fetchers'
+import { connect } from 'react-redux';
+import { addFavourite } from '../actions/AddFavouriteAction'
 
 class FavouritePage extends Component {
     state = {  
@@ -9,14 +11,29 @@ class FavouritePage extends Component {
     }
 
     componentDidMount(){
+        _retrieveFavourite().then((res) => { this.props.addFavourite(res) })
+        this.checkFavorite()
+        //GetData(this.state.favourite, "").then((res) => this.setState({dataElement: res.data.data}))
+    }
+
+    checkFavorite(){
         _retrieveFavourite().then((res) => {this.setState({favourite: res})});
         setTimeout(()=>GetData(this.state.favourite, "").then((res) => this.setState({dataElement: res.data.data})), 20)
-        //GetData(this.state.favourite, "").then((res) => this.setState({dataElement: res.data.data}))
+        
     }
 
 
 
     render() { 
+
+        if (this.state.favourite !== this.props.fav) {
+            this.checkFavorite()
+        }
+        
+        console.log("FRA REDUX: ", this.props.fav)
+        console.log("FRA STATE: ", this.state.favourite)
+        console.log(this.props.fav === this.state.favourite)
+
         const { dataElement } = this.state
 
         const styles = StyleSheet.create({
@@ -49,4 +66,16 @@ class FavouritePage extends Component {
     }
 }
 
-export default FavouritePage;
+const mapStateToProps = (state) => { //give us accsess to the data in store
+    return {
+      fav: state.favourite.favourite
+    }
+  };
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addFavourite: (fav) => dispatch(addFavourite(fav))
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FavouritePage);

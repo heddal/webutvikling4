@@ -3,9 +3,11 @@ const initState = {
 }
 
 const favouriteReducer = (state = initState, action) => {
-    switch(action.type) {
+    switch(action.type) {        
         case 'ADD_FAVOURITE':
-            return{ favourite: action.favourite }
+            console.log("Add-favourite-reducer")
+            console.log(action.fav)
+            return{ favourite: action.fav }
         case 'REMOVE_FAVOURITE':
             return { favourite: "" }
         default: return state;

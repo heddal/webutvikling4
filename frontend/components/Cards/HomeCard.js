@@ -145,7 +145,6 @@ class Card extends Component {
 const mapStateToProps = (state) => { //give us accsess to the data in store
 
     return {
-      page: state.page.page,
       word: state.filter.searchWord,
       continent: state.filter.continent,
       destinationID: state.destination.destinationID,

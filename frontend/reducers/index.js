@@ -3,7 +3,7 @@ import destinationReducer from './DestinationReducer';
 import lengthReducer from './LengthReducer';
 import filterReducer from './FilterReducer';
 import { combineReducers } from 'redux';
-import setPageReducer from './SetPageReducer';
+import favouriteReducer from './FavouriteReducer';
 
 
 const rootReducer = combineReducers({
@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
     sort: sortReducers,
     destination: destinationReducer,
     length: lengthReducer,
-    page: setPageReducer
+    favourite: favouriteReducer
 });
 
 export default rootReducer

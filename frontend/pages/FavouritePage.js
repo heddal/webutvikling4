@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { _retrieveFavourite, GetData } from '../api/fetchers'
 import { connect } from 'react-redux';
-import { addFavourite } from '../actions/AddFavouriteAction'
+import { setFavourite } from '../actions/setFavouriteAction'
 
 class FavouritePage extends Component {
     state = {  
@@ -11,12 +11,13 @@ class FavouritePage extends Component {
     }
 
     componentDidMount(){
-        _retrieveFavourite().then((res) => { this.props.addFavourite(res) })
+        _retrieveFavourite().then((res) => { this.props.setFavourite(res) })
         this.checkFavorite()
         //GetData(this.state.favourite, "").then((res) => this.setState({dataElement: res.data.data}))
     }
 
     checkFavorite(){
+
         _retrieveFavourite().then((res) => {this.setState({favourite: res})});
         setTimeout(()=>GetData(this.state.favourite, "").then((res) => this.setState({dataElement: res.data.data})), 20)
         
@@ -26,13 +27,9 @@ class FavouritePage extends Component {
 
     render() { 
 
-        if (this.state.favourite !== this.props.fav) {
+        if (this.state.favourite !== this.props.fav && this.props.fav !== undefined && this.props.fav !== "") {
             this.checkFavorite()
         }
-        
-        console.log("FRA REDUX: ", this.props.fav)
-        console.log("FRA STATE: ", this.state.favourite)
-        console.log(this.props.fav === this.state.favourite)
 
         const { dataElement } = this.state
 
@@ -52,10 +49,10 @@ class FavouritePage extends Component {
             },
         })
 
-        console.log(this.state.favourite)
+       /* console.log(this.state.favourite)
         console.log("Burde det funke? ")
         console.log(this.props.fav)
-        console.log(this.props.log === undefined)
+        console.log(this.props.fav === undefined)*/
 
         if (this.props.fav === "" || this.props.fav === undefined){
 
@@ -65,7 +62,7 @@ class FavouritePage extends Component {
                 <Text style = {{fontSize: 14}} > Browse our app to find to find your dream destination. </Text>
             </View>)
             
-        } else {
+        } else { 
         return ( 
             <View style={styles.container}>
                 <Text style={{fontSize: 28, textAlign: "center", padding: 8}}>Your favourite destination</Text>
@@ -89,7 +86,7 @@ const mapStateToProps = (state) => { //give us accsess to the data in store
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addFavourite: (fav) => dispatch(addFavourite(fav))
+        setFavourite: (fav) => dispatch(setFavourite(fav))
     }
 };
 

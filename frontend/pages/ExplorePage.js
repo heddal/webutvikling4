@@ -32,12 +32,7 @@ class ExplorePage extends Component {
       <View style={styles.container}>
         <Text style={styles.header}> Results from "{this.props.word}"</Text>
         <SearchBox />
-        <View
-          style={{
-            flex: 1,
-            textAlign: "center"
-          }}
-        >
+        <View style = {{flexDirection: "row", paddingBottom: 3}}>
           <Dropdown
             selected={this.props.dropdowns[0].index}
             dropName={this.props.dropdowns[0].menuName}
@@ -49,8 +44,8 @@ class ExplorePage extends Component {
             dropName={this.props.dropdowns[1].menuName}
             options={this.props.dropdowns[1].options}
             changeSelected={this.props.changeSelected}
-          />
-        </View>
+          /> 
+          </View>
         <Card />
       </View>
     );
@@ -69,7 +64,9 @@ const mapStateToProps = state => {
   const filter = state.filter;
   return {
     dropdowns: state.dropdowns,
-    word: filter.searchWord
+    word: filter.searchWord,
+    continent: filter.continent,
+    sortType: state.sort.sortType
   };
 };
 

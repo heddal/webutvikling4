@@ -25,6 +25,7 @@ const createURL = (input, sorting) => {
 // Creates proper URL and fetches the data with axios
 export const GetData = async (input, sorting) => {
     var url = createURL(input, sorting)
+    console.log("SORTERING: ", sorting)
     return await axios.get(url).catch((err) => {console.log("Error from axios: ", err)})
 }
 
@@ -44,7 +45,6 @@ export const _retrieveFavourite = async () => {
         const response = await AsyncStorage.getItem('favourite');
         if (response !== null) {
           // We have data!!
-            console.log("The users favourite is",response);
             return response
         }
       } catch (error) {

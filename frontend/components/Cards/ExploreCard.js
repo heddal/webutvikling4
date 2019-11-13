@@ -5,7 +5,7 @@ import { GetData, UpdatePopulatiry, _retrieveFavourite, _storeFavourite, _remove
 import { ScrollView } from 'react-native-gesture-handler';
 import MaterialDialog from './DetailedCard';
 import { showDestination } from '../../actions/DestinationAction';
-import { setFavourite } from '../../actions/SetFavouriteAction'
+import { setFavourite } from '../../actions/SetFavouriteAction';
 
 class Card extends Component {
     state ={
@@ -14,7 +14,9 @@ class Card extends Component {
         visible: false,
         favourite: "",
         label: "SAVE AS FAVOURITE",
-        currentSerachWord: "all"
+        currentSerachWord: "all",
+        currentContinent: "all",
+        currentSort: "none"
     }
 
     componentWillMount(){
@@ -22,24 +24,22 @@ class Card extends Component {
         _retrieveFavourite().then((res) => this.setState({favourite: res}))
     }
 
-    setData(input) {
-        GetData(input).then((res) => this.setState({data: res.data.data}))
+    setData(input, sorting) {
+        GetData(input, sorting).then((res) => this.setState({data: res.data.data}))
     }
 
     checkSearchWord(){
-        //console.log("INNE I DEN GRENIA ;))) ", this.props.word)
-        if (this.props.word === "all"){
-            if(this.props.continent === 'all'){
-                //console.log("Henter alt")
-                this.setData("")
+        console.log(this.props.continent)
+        console.log(this.props.word)
+        if (this.props.word.toLowerCase() === "all"){
+            if(this.props.continent.toLowerCase() === 'all'){
+                this.setData("", this.props.sortType)
             } else {
-                    this.setData(this.props.continent)}
-        } else if (this.props.continent === 'all'){
-            //console.log("Henter etter søkeord: ", this.props.word)
-            this.setData(this.props.word)
-        } else {this.setData(this.props.continent + "/" + this.props.word)}
-
-        console.log(this.state.data)
+                this.setData(this.props.continent.toLowerCase(), this.props.sortType)}
+        } else if (this.props.continent.toLowerCase() === 'all'){
+            this.setData(this.props.word, this.props.sortType)
+        } else { 
+            this.setData(this.props.continent + "/" + this.props.word, this.props.sortType)}
     }
 
     openDetailedCard(destinationID, popularity){
@@ -104,16 +104,23 @@ class Card extends Component {
         const { data } = this.state
         const { dataElement } = this.state
 
+
         if (this.state.currentSerachWord.toLowerCase() !== this.props.word.toLowerCase()){
             this.setState({ currentSerachWord: this.props.word})
             this.checkSearchWord()
+        } else if ( this.state.currentContinent.toLowerCase() !== this.props.continent.toLowerCase()){
+           this.setState({ currentContinent: this.props.continent })
+            this.checkSearchWord()
+        } else if (this.state.currentSort.toLowerCase() !== this.props.sortType.toLowerCase()){
+            this.setState({ currentSort: this.props.sortType})
+            this.checkSearchWord()
         }
-        
+
         return (
             <View>
             <FlatList contentContainerStyle={{
                 width: 350,
-                paddingBottom: 85
+                paddingBottom: 150
             }}
             data = {data}
             renderItem = { ({ item }) => (<TouchableHighlight key={item._id} underlayColor = 'white' onPress = {() => this.openDetailedCard(item._id, item.popularity)}>
@@ -160,7 +167,8 @@ const mapStateToProps = (state) => { //give us accsess to the data in store
     return {
       word: state.filter.searchWord,
       continent: state.filter.continent,
-      fav: state.favourite.favourite
+      fav: state.favourite.favourite,
+      sortType: state.sort.sortType
     }
   };
 

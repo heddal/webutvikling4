@@ -67,7 +67,7 @@ const MaterialDialog = ({
               <View>
                 {title != null ? (
                   <View style={scrolled ? styles.titleContainerScrolled : styles.titleContainer}>
-                    <Text style={[material.title, { color: titleColor }]}>{title}</Text>
+                    <Text style={[material.title, { color: titleColor, textTransform: "capitalize" }]}>{title}</Text>
                   </View>
                 ) : null}
                 <View

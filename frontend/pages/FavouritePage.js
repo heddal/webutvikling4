@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
-import { _retrieveFavourite, GetData } from '../api/fetchers'
+import { _retrieveFavourite, GetData } from '../api/fetchers';
 import { connect } from 'react-redux';
-import { setFavourite } from '../actions/setFavouriteAction'
+import { setFavourite } from '../actions/SetFavouriteAction';
+import { ScrollView } from 'react-native-gesture-handler';
 
 class FavouritePage extends Component {
     state = {  
@@ -66,13 +67,13 @@ class FavouritePage extends Component {
         return ( 
             <View style={styles.container}>
                 <Text style={{fontSize: 28, textAlign: "center", padding: 8}}>Your favourite destination</Text>
-                <Text style={{fontSize: 20, textAlign: "center", padding: 8}}>{dataElement.name}</Text>
-                <Text style={{fontSize: 16, textAlign: "center", padding: 8}}>{dataElement.country}/{dataElement.continent}</Text>
+                <Text style={{fontSize: 20, textAlign: "center", padding: 8, textTransform: "capitalize"}}>{dataElement.name}</Text>
+                <Text style={{fontSize: 16, textAlign: "center", padding: 8, textTransform: "capitalize"}}>{dataElement.country}/{dataElement.continent}</Text>
                 <Image style={styles.image} source={{uri: dataElement.img}}></Image>
-                <Text style={{fontSize: 16, textAlign: "center", padding: 8}}>{dataElement.description}</Text>
-                <Text style={{fontSize: 12, textAlign: "center", padding: 8}}>The description collected is from {dataElement.source}</Text>
-
-
+                <ScrollView>
+                    <Text style={{fontSize: 16, textAlign: "center", padding: 8}}>{dataElement.description}</Text>
+                    <Text style={{fontSize: 12, textAlign: "center", padding: 8}}>The description collected is from {dataElement.source}</Text>
+                </ScrollView>
             </View>
          );
     }}

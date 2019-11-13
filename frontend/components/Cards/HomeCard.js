@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import { GetData, UpdatePopulatiry, _retrieveFavourite, _storeFavourite, _removeFavourite } from '../../api/fetchers'
 import { ScrollView } from 'react-native-gesture-handler';
 import MaterialDialog from './DetailedCard';
-import { showDestination } from '../../actions/DestinationAction'
+import {showDestination} from '../../actions/DestinationAction'
+import { addFavourite } from '../../actions/AddFavouriteAction'
+import { removeFavourite } from '../../actions/RemoveFavouriteAction'
 
 
 class Card extends Component {
@@ -38,18 +40,20 @@ class Card extends Component {
         this.setState({visible: false})
         if(okLabel == "SAVE AS FAVOURITE"){
             setTimeout(()=>{Alert.alert(name + " was set as favourite location")}, 1000)
-            _storeFavourite(destinationID).then((res) => this.setState({favourite: res}))
+            _storeFavourite(destinationID).then((res) => this.props.addFavourite(res))
+            
             
         }
         else if(okLabel == "REMOVE AS FAVOURITE"){
             setTimeout(()=>{Alert.alert(name + " was removed as favourite location")}, 1000)
-            _removeFavourite().then(() => this.setState({favourite: ""}))
+            _removeFavourite().then(() => this.props.removeFavourite())
         }
-        
+
+        this.setState({favourite: this.props.fav})
     }
 
     isFavourite(destinationID){
-        if(destinationID == this.state.favourite){
+        if(destinationID == this.props.fav){
             return "REMOVE AS FAVOURITE"
         }
         return "SAVE AS FAVOURITE"
@@ -142,11 +146,11 @@ class Card extends Component {
 const mapStateToProps = (state) => { //give us accsess to the data in store
 
     return {
-      page: state.page.page,
       word: state.filter.searchWord,
       continent: state.filter.continent,
       destinationID: state.destination.destinationID,
       sort: state.sort.sortType,
+      fav: state.favourite.favourite
     }
 };
 
@@ -154,6 +158,8 @@ const mapStateToProps = (state) => { //give us accsess to the data in store
 const mapDispatchToProps = (dispatch) => {
 return {
     showDestination: (destinationID) => dispatch(showDestination(destinationID)),
+    addFavourite: (fav) => dispatch(addFavourite(fav)),
+    removeFavourite: () => dispatch(removeFavourite())
 }
 };
 

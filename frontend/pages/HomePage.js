@@ -5,7 +5,6 @@ import { createStore, applyMiddleware } from 'redux';
 import rootReducer from '../reducers/';
 import thunk from 'redux-thunk'
 import { connect } from 'react-redux';
-import { setPage } from '../actions/SetPageAction';
 import { MaterialDialog } from '../components/Cards/DetailedCard'
 
 
@@ -13,15 +12,7 @@ const store = createStore(rootReducer, applyMiddleware(thunk))
 
 class HomePage extends Component {
 
-    componentWillMount(){
-        this.props.setPage("Home")
-    }
-
     render(){
-
-      
-      this.props.setPage("Home")
-      console.log("HOME: ", this.props.navigation.state.routeName)
         return(
             <View style={{
                 paddingTop: 36,  
@@ -38,10 +29,5 @@ class HomePage extends Component {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-      setPage: (page) => dispatch(setPage(page)),
-    }
-  };
 
-export default connect(null, mapDispatchToProps)(HomePage);
+export default HomePage;

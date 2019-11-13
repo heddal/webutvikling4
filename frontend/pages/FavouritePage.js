@@ -34,6 +34,8 @@ class FavouritePage extends Component {
                 backgroundColor: 'aliceblue'
             },
         })
+
+        console.log(this.state.favourite)
         return ( 
             <View style={styles.container}>
                 <Text style={{fontSize: 28, textAlign: "center", padding: 8}}>Your favourite destination</Text>

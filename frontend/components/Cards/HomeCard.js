@@ -3,8 +3,8 @@ import { StyleSheet, Text, View, TouchableHighlight, Image, FlatList, Alert } fr
 import { connect } from 'react-redux';
 import { GetData, UpdatePopulatiry, _retrieveFavourite, _storeFavourite, _removeFavourite } from '../../api/fetchers'
 import { ScrollView } from 'react-native-gesture-handler';
-import MaterialDialog from '../DetailedCard';
-import {showDestination} from '../../actions/DestinationAction'
+import MaterialDialog from './DetailedCard';
+import { showDestination } from '../../actions/DestinationAction'
 
 
 class Card extends Component {
@@ -39,13 +39,11 @@ class Card extends Component {
         if(okLabel == "SAVE AS FAVOURITE"){
             setTimeout(()=>{Alert.alert(name + " was set as favourite location")}, 1000)
             _storeFavourite(destinationID).then((res) => this.setState({favourite: res}))
-            this.props.setFavourite(destinationID)
             
         }
         else if(okLabel == "REMOVE AS FAVOURITE"){
             setTimeout(()=>{Alert.alert(name + " was removed as favourite location")}, 1000)
             _removeFavourite().then(() => this.setState({favourite: ""}))
-            this.props.setFavourite("")
         }
         
     }
@@ -104,7 +102,7 @@ class Card extends Component {
             <View>
                 <FlatList contentContainerStyle={{
                     width: 350,
-                    paddingBottom: 65
+                    paddingBottom: 80
                 }}
                 data = {data}
                 renderItem = { ({ item }) => (
@@ -119,7 +117,6 @@ class Card extends Component {
                 maxToRenderPerBatch = {10}
                 windowSize = {5}
                 keyExtractor={(item, index) => index.toString()}
-                //updateCellsBatchingPeriod = {10}
                 />
                 
                  <MaterialDialog

@@ -11,7 +11,7 @@ import {
   View,
   Dimensions,
 } from 'react-native';
-import colors from './colors';
+import colors from '../colors';
 import { material } from 'react-native-typography';
 
 const { height } = Dimensions.get('window');
@@ -219,5 +219,6 @@ ActionButton.propTypes = {
   label: PropTypes.string.isRequired,
   onPress: PropTypes.func.isRequired,
 };
+
 
 export default MaterialDialog;

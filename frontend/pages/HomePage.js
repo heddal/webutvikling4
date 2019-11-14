@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { Text, View} from 'react-native';
 import Card from '../components/Cards/HomeCard'
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from '../reducers/';
 import thunk from 'redux-thunk'
-import { connect } from 'react-redux';
-import { MaterialDialog } from '../components/Cards/DetailedCard'
 
 
 const store = createStore(rootReducer, applyMiddleware(thunk))

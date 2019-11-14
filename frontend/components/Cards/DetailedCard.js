@@ -1,24 +1,12 @@
+//basecode for the pop-up card/MaterialCard
+
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  StyleSheet,
-  Modal,
-  Text,
-  Platform,
-  TouchableHighlight,
-  KeyboardAvoidingView,
-  TouchableWithoutFeedback,
-  View,
-  Dimensions,
-} from 'react-native';
+import { StyleSheet, Modal, Text, Platform, TouchableHighlight, KeyboardAvoidingView, TouchableWithoutFeedback, View, Dimensions } from 'react-native';
 import colors from '../colors';
 import { material } from 'react-native-typography';
 
 const { height } = Dimensions.get('window');
-
-// TODO: Don't rely on Dimensions for the actions footer layout
-// TODO: Support custom actions
-// TODO: Stacked full-width buttons
 
 const ActionButton = ({ testID, onPress, colorAccent, label }) => (
   <TouchableHighlight

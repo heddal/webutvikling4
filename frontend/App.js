@@ -37,7 +37,7 @@ const TabNavigator = createBottomTabNavigator(
   activeBackgroundColor : '#3f51b5',
   inactiveBackgroundColor : 'rgba(63, 81, 181, .5)',
   showLabel : false,
-}//, resetOnBlur: true
+}
 
 });
 

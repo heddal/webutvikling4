@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { View, TextInput, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux'
 import { changeSearchword } from '../actions/SearchAction'
@@ -23,7 +23,7 @@ class SearchBox extends Component {
         this.props.changeSearchword(word)
     }
 
-    handleSearchWord = (e) => {
+    handleSearchWord = (e) => { //registers the input for user before search
         var word = this.state.searchWord
         if (e.nativeEvent.key !== "Backspace"){
             word += e.nativeEvent.key
@@ -33,7 +33,6 @@ class SearchBox extends Component {
             console.log("Ikke no å slette")
         }
         this.setState({ searchWord: word})
-        console.log(word)
     }
 
     render(){
@@ -64,7 +63,7 @@ const mapDispatchToProps = (dispatch) => {
     }
   };
   
-  const mapStateToProps = (state) => { //give us accsess to the data in store
+  const mapStateToProps = (state) => {
     const filter = state.filter
     return {
       word: filter.searchWord

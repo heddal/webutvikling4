@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Alert, TouchableHighlight, Image, FlatList, TouchableHighlightBase } from 'react-native';
+import { StyleSheet, Text, View, Alert, TouchableHighlight, Image, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { GetData, UpdatePopulatiry, _retrieveFavourite, _storeFavourite, _removeFavourite } from '../../api/fetchers'
 import { ScrollView } from 'react-native-gesture-handler';
@@ -28,9 +28,7 @@ class Card extends Component {
         GetData(input, sorting).then((res) => this.setState({data: res.data.data}))
     }
 
-    checkSearchWord(){
-        console.log(this.props.continent)
-        console.log(this.props.word)
+    checkSearchWord(){ //uses setData to find the correct data based on searchword, filter and sorrt
         if (this.props.word.toLowerCase() === "all"){
             if(this.props.continent.toLowerCase() === 'all'){
                 this.setData("", this.props.sortType)
@@ -59,7 +57,6 @@ class Card extends Component {
             
         }
         else if(okLabel == "REMOVE AS FAVOURITE"){
-            console.log("REDUXEN ER FEIL")
             setTimeout(()=>{Alert.alert(name + " was removed as favourite location")}, 1000)
             _removeFavourite().then(() => this.props.setFavourite(""))
         }
@@ -133,6 +130,7 @@ class Card extends Component {
             initialNumToRender = {5}
             maxToRenderPerBatch = {10}
             windowSize = {5}
+            keyExtractor={(item, index) => index.toString()}
             />
             <MaterialDialog
                     title={dataElement.name}
@@ -146,6 +144,7 @@ class Card extends Component {
                     <ScrollView contentContainerStyle={styles.scrollViewContainer}>
                         <View style={styles.row}>
                             <Image style={styles.Image} source={{uri: dataElement.img}}/>
+                            <Text style = {styles.text, {textTransform: "capitalize"}}> {dataElement.country}/{dataElement.continent} </Text>
                             <Text style={styles.text}>{dataElement.description}</Text>
                         </View>
                     </ScrollView>
@@ -162,8 +161,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-const mapStateToProps = (state) => { //give us accsess to the data in store
-
+const mapStateToProps = (state) => { 
     return {
       word: state.filter.searchWord,
       continent: state.filter.continent,

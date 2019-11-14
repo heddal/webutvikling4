@@ -24,12 +24,15 @@ Den siste tab-en, favoritt-siden, viser fram ditt favorittsted. Dette kan man ve
 ## Funksjonalitet
 
 Når det gjelder søk, så må man søke på hele byen/landet for at det skal komme opp.
-Hadde vi hatt mer tid (og prosjektet ga mer poeng) skulle vi også fått implementert slik at man kunne søke med ufullstendige ord.
-Feks man søker "p" og alle landene/byene som starter på "p" dukker opp. Vi har også et issue på dette med label "could be nice".
+Hadde vi hatt mer tid skulle vi også fått implementert slik at man kunne søke med ufullstendige ord.
+Da kunne man for eksempel søkt "p" og alle landene/byene som starter på eller inneholder "p" dukket opp. Vi har også et issue på dette med label "could be nice".
+Det er også et annet issue med label "could be nice" nemlig ordsky, men vi valgte å droppe dette også siden det ikke var et krav. 
+Begge disse issuene ligger i "Open" fordi vi syntes det ble rart å legge dem i "Closed" ettersom de aldri ble påbegynt. 
 
 ## Design
 
 Vi har gått for et minimaslistisk design for å gjøre siden oversiktelig og for at den skal være enkel å bruke. Vi har for det meste brukt react sine eksterne biblioteker, og det gjør at siden holder seg konsistent i design.
+Vi prøve også å gjøre designet så likt som nettsiden i prosjekt3 som mulig slik at disse skulle være kosistente med hverandre. 
 
 ## Persistent lagring av data
 
@@ -40,17 +43,17 @@ Koden som setter, henter og fjerner favoritt ligger i frontend > api > fetchers.
 
 ## Frontend
 
-Appen er skrevet i React Native, og til state management bruker vi Redux. Vi initialiserte prosjektet og tester appen ved å bruke Expo. I tillegg har vi tatt i bruk ulike biblioteker som for eksempel react-navigation-tab og react-native-material-menu. Hvis man ønsker å se resten, finner man fler i package.json der de står i dependencies.
+Appen er skrevet i React Native, og til state management bruker vi Redux. Vi initialiserte prosjektet og tester appen ved å bruke Expo. I tillegg har vi tatt i bruk ulike biblioteker som for eksempel react-navigation-tab og react-native-material-menu. Hvis man ønsker å se resten, finner man fler i package.json hvor de står listet i dependencies.
 
 ## Backend
 
 Selvom man kunne benytte seg av samme server som sist, valgte vi å gjøre om litt på vår. Dette fordi vi fikk tilbakemeldinger på prosjekt 3 om at vi ikke hadde det beste oppsettet (f.eks fordi vi sorterte i frontend), og dette var ikke like kompatibelt med veldig store datasett. Vi har også ryddet opp i fetchene og laget egen fil som kjører fetchmetoder for å gjøre det hele mer oversiktelig.
 
-Vi har da en routers-mappe i backend som inneholder en api-fil. Her ligger all routing, samt sortering dersom det er valgt av bruker. Den sorterer da dersom det er lagret noe om dette i redux.
+Vi har derfor en routers-mappe i backend som inneholder en api-fil. Her ligger all routing, samt sortering dersom det er valgt av bruker. Den sorterer da dersom det er lagret noe om dette i redux.
 
-I frontend har vi også en api-mappe som inneholder en fetchers-fil. Denne inneholder en GetData-funksjon som hente riktig data utfra hvilken input den får, eks på riktig søkeord osv.
+I frontend har vi også en api-mappe som inneholder en fetchers-fil. Denne inneholder en GetData-funksjon som henter riktig data utfra hvilken input den får, for eksempel på riktig søkeord osv.
 
-Selve databasen er lik som sist, og det samme er koblingen mellom server og app. Forskjellen er da at vi har ryddet opp i koden så den er mer oversiktelig, vi har prøvd å få mest mulig gjenbruk av kode og slippe å skrive ting dobbelt opp.
+Selve databasen er lik som sist, og det samme er koblingen mellom server og app. Forskjellen er da at vi har ryddet opp i koden så den er mer oversiktelig, og vi har prøvd å få mest mulig gjenbruk av kode så vi slipper å skrive ting dobbelt opp.
 
 Av teknologier til backend har vi brukt Express, MondoDB og Mongoose.
 

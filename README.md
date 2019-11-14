@@ -24,6 +24,7 @@ Den siste tab-en, favoritt-siden, viser fram ditt favorittsted. Dette kan man ve
 Når det gjelder søk, så må man søke på hele byen/landet for at det skal komme opp.
 Hadde vi hatt mer tid skulle vi også fått implementert slik at man kunne søke med ufullstendige ord.
 Da kunne man for eksempel søkt "p" og alle landene/byene som starter på eller inneholder "p" dukket opp. Vi har også et issue på dette med label "could be nice".
+
 Det er også et annet issue med label "could be nice" nemlig ordsky, men vi valgte å droppe dette også siden det ikke var et krav. 
 Begge disse issuene ligger i "Open" fordi vi syntes det ble rart å legge dem i "Closed" ettersom de aldri ble påbegynt. 
 
@@ -52,6 +53,7 @@ Av teknologier til backend har vi brukt Express, MondoDB og Mongoose.
 ## Detaljert visning
 
 Det er mulighet for detaljert visning ved å trykke på kortelementene. Da kommer det opp en dialogboks med informasjon om stedet, mulighet for å legge til/fjerne som favoritt og lukke boksen. Dialogen kan også lukkes ved å trykke utenfor boksen. 
+
 Vi har hatt litt problemer med scrolling inni boksen, så hvis det er en lang beskrivelse på setdet, kan det bli vanskelig å se alt fordi skrollingen ikke fungerer som den skal. 
 Vi har prøvd å fikse opp i det uten hell og valgte derfor å bare nedprioritere det grunnet tidsmangel, og at det ikke er den verste feilen. Hadde vi hatt mer tid, skulle vi gjerne sett at det fungerte optimalt. 
 
@@ -59,6 +61,7 @@ Vi har prøvd å fikse opp i det uten hell og valgte derfor å bare nedprioriter
 
 Som beskrevet i oppgaveteksten har vi brukt AsyncStorage for persistent lagring av data. Inne på den detaljerte visningen av stedene er det en knapp som sier "Save as favourite" eller "Remove as favourite" utfra om dette stedet er brukerens favoritt eller ikke.
 Når den trykkes kommer det opp en alert som gir brukeren bekreftelse på at stedet ble lagret/fjernet som favoritt. Stedet settes/fjesernes da som favoritt i AsyncStorage, og det er dette stedet som vises frem på favorittsiden. 
+
 Vi vurderte om det skulle være mulig å ha flere favorittsteder, men vi fant ut at det ble litt mye jobb, og mtp tidsfristen, syntes vi det egnet seg fint med muligheten for kun ett favorittsted. 
 Koden som setter, henter og fjerner favoritt ligger i frontend > api > fetchers. 
 

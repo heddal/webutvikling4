@@ -75,10 +75,6 @@ Vi har kommentert koden på en saklig måte, og prøvd å supplere koden strateg
 ## Testing
 
 Run tests:
-For å kjøre:
-
-```
-npx cypress open
-```
+Kjør `npx cypress open` for å teste.
 
 For ende-til-ende-testing har vi brykt Cypress. Da får vi testet applikasjonen tilstrekkelig på en enkel og oversiktlig måte. I tillegg er det lett å følge testene og se hva som skjer.

@@ -42,7 +42,9 @@ Vi initialiserte prosjektet og tester appen ved å bruke Expo. I tillegg har vi 
 
 Selvom man kunne benytte seg av samme server som sist, valgte vi å gjøre om litt på vår. Dette fordi vi fikk tilbakemeldinger på prosjekt 3 om at vi ikke hadde det beste oppsettet (f.eks fordi vi sorterte i frontend), og dette var ikke like kompatibelt med veldig store datasett. Vi har også ryddet opp i fetchene og laget egen fil som kjører fetchmetoder for å gjøre det hele mer oversiktelig.
 
-Vi har derfor en routers-mappe i backend som inneholder en api-fil. Her ligger all routing, samt sortering dersom det er valgt av bruker. Den sorterer da dersom det er lagret noe om dette i redux.
+Vi har derfor en routers-mappe i backend som inneholder en api-fil. Her ligger all routing, der nesten alle routing funksjoner er gjenbruk fra prosjekt 3. 
+Vi har nå også lagt inn sortering her, dersom det er valgt av bruker. Den sorterer da dersom det er lagret noe om dette i redux. 
+
 
 I frontend har vi også en api-mappe som inneholder en fetchers-fil. Denne inneholder en GetData-funksjon som henter riktig data utfra hvilken input den får, for eksempel på riktig søkeord osv.
 

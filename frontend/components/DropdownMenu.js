@@ -15,7 +15,6 @@ class Dropdown extends React.PureComponent {
   changeMenu = index => {
     this.props.changeSelected(index, this.props.dropName);
     this.hideMenu();
-
     if (this.props.dropName === "Continent") {
       this.props.continentFilter(index);
     } else if (this.props.dropName === "Sort") {
@@ -43,7 +42,8 @@ class Dropdown extends React.PureComponent {
         borderRadius: 7
       }
     });
-
+    // mapping over the different options in the menu and making an menuitem for each
+    // it will be displayed in the menu further down.
     const menuItems = this.props.options.map((opt, i) => (
       <MenuItem
         key={i}
@@ -53,7 +53,6 @@ class Dropdown extends React.PureComponent {
         {opt}
       </MenuItem>
     ));
-
     return (
       <View style={styles.menuContainer}>
         <Menu

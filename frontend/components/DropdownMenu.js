@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Menu, { MenuItem } from "react-native-material-menu";
 import { connect } from "react-redux";
-import { continentFilter } from '../actions/ContinentAction';
+import { continentFilter } from "../actions/ContinentAction";
 import { sortBy } from "../actions/SortingActions";
 
 class Dropdown extends React.PureComponent {
@@ -16,10 +16,10 @@ class Dropdown extends React.PureComponent {
     this.props.changeSelected(index, this.props.dropName);
     this.hideMenu();
 
-    if ( this.props.dropName === "Continent" ) {
-      this.props.continentFilter(index)
-    } else if ( this.props.dropName === "Sort" ) {
-      this.props.sortBy(index)
+    if (this.props.dropName === "Continent") {
+      this.props.continentFilter(index);
+    } else if (this.props.dropName === "Sort") {
+      this.props.sortBy(index);
     }
   };
 
@@ -32,31 +32,27 @@ class Dropdown extends React.PureComponent {
   };
 
   render() {
-
     const styles = StyleSheet.create({
       menuContainer: {
-        flex: 1, 
-        alignItems: 'center', 
-        justifyContent: 'center' , 
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
         padding: 3,
         marginHorizontal: 45,
-        backgroundColor: 'rgba(63, 81, 181, .5)',
+        backgroundColor: "rgba(63, 81, 181, .5)",
         borderRadius: 7
-
       }
-    })
-
+    });
 
     const menuItems = this.props.options.map((opt, i) => (
       <MenuItem
         key={i}
-        onPress={() => this.changeMenu( opt, i)}
+        onPress={() => this.changeMenu(opt, i)}
         disable={parseInt(this.props.selected) === parseInt(i)}
       >
         {opt}
       </MenuItem>
     ));
-
 
     return (
       <View style={styles.menuContainer}>
@@ -80,4 +76,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Dropdown);
+export default connect(
+  null,
+  mapDispatchToProps
+)(Dropdown);

@@ -32,7 +32,7 @@ class ExplorePage extends Component {
       <View style={styles.container}>
         <Text style={styles.header}> Results from "{this.props.word}"</Text>
         <SearchBox />
-        <View style = {{flexDirection: "row", paddingBottom: 3}}>
+        <View style={{ flexDirection: "row", paddingBottom: 3 }}>
           <Dropdown //names, key and options from store (DropDownReducer)
             selected={this.props.dropdowns[0].index}
             dropName={this.props.dropdowns[0].menuName}
@@ -44,8 +44,8 @@ class ExplorePage extends Component {
             dropName={this.props.dropdowns[1].menuName}
             options={this.props.dropdowns[1].options}
             changeSelected={this.props.changeSelected}
-          /> 
-          </View>
+          />
+        </View>
         <Card />
       </View>
     );

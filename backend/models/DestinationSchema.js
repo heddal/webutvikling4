@@ -1,4 +1,3 @@
-
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -19,4 +18,4 @@ const DestinationSchema = new Schema(
 );
 
 // export the new Schema so we could modify it using Node.js
-module.exports = mongoose.model("Destination", DestinationSchema, 'test');
+module.exports = mongoose.model("Destination", DestinationSchema, "test");

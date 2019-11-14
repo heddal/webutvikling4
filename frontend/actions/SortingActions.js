@@ -1,10 +1,9 @@
 // sort by different types, ex. continent, facilities..
-export const sortBy = (sortType) => {
-    return (dispatch, getState) => {
-        dispatch({
-            type: 'SORT_TYPE', 
-            sortType
-        })
-    
-    }
+export const sortBy = sortType => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: "SORT_TYPE",
+      sortType
+    });
+  };
 };

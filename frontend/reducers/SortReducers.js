@@ -1,17 +1,16 @@
 // sort reducers for the locations
 
 const sortReducersDefaultState = {
-    sortType: "none"
+  sortType: "none"
 };
 
 const sortReducers = (state = sortReducersDefaultState, action) => {
-    switch(action.type) {
-        case 'SORT_TYPE':
-            return { sortType: action.sortType };
-        default:
-            return state;
-    }
-}
+  switch (action.type) {
+    case "SORT_TYPE":
+      return { sortType: action.sortType };
+    default:
+      return state;
+  }
+};
 
 export default sortReducers;
-

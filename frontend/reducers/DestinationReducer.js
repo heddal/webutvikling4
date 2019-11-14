@@ -1,13 +1,14 @@
 const initState = {
-    destinationID: "",
-}
+  destinationID: ""
+};
 
 const destinationReducer = (state = initState, action) => {
-    switch(action.type) {
-        case 'SHOW_DESTINATION':
-            return{destinationID: action.destinationID}
-        default: return state;
-    };
-}
+  switch (action.type) {
+    case "SHOW_DESTINATION":
+      return { destinationID: action.destinationID };
+    default:
+      return state;
+  }
+};
 
-export default destinationReducer
+export default destinationReducer;

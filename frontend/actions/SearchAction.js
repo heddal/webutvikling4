@@ -1,7 +1,8 @@
-export const changeSearchword = (word) => {
-    return (dispatch, getState) => {
-        dispatch({
-            type: 'CHANGE_SEARCHWORD', word,
-        })
-    }
+export const changeSearchword = word => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: "CHANGE_SEARCHWORD",
+      word
+    });
+  };
 };

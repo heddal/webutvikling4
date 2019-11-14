@@ -4,8 +4,6 @@ npm install react-navigation
 
 For å kjøre prosjektet, skriv inn følgende kommandoer i terminalen:
 
-_note to self: installere mongoose? Expo? Cypress? --save på dem ?_
-
 1. `git clone git@gitlab.stud.idi.ntnu.no:IT2810-H19/teams/team-10/prosjekt-4.git Prosjekt_4_gruppe10 && cd Prosjekt_4_gruppe10`
 2. `cd frontend && npm install`
 3. `cd ../backend && npm install`
@@ -34,16 +32,10 @@ Begge disse issuene ligger i "Open" fordi vi syntes det ble rart å legge dem i 
 Vi har gått for et minimaslistisk design for å gjøre siden oversiktelig og for at den skal være enkel å bruke. Vi har for det meste brukt react sine eksterne biblioteker, og det gjør at siden holder seg konsistent i design.
 Vi prøve også å gjøre designet så likt som nettsiden i prosjekt3 som mulig slik at disse skulle være kosistente med hverandre. 
 
-## Persistent lagring av data
-
-Som beskrevet i oppgaveteksten har vi brukt AsyncStorage for persistent lagring av data. Inne på den detaljerte visningen av stedene er det en knapp som sier "Save as favourite" eller "Remove as favourite" utfra om dette stedet er brukerens favoritt eller ikke.
-Når den trykkes kommer det opp en alert som gir brukeren bekreftelse på at stedet ble lagret/fjernet som favoritt. Stedet settes/fjesernes da som favoritt i AsyncStorage, og det er dette stedet som vises frem på favorittsiden. 
-Vi vurderte om det skulle være mulig å ha flere favorittsteder, men vi fant ut at det ble litt mye jobb, og mtp tidsfristen, syntes vi det egnet seg fint med muligheten for kun ett favorittsted. 
-Koden som setter, henter og fjerner favoritt ligger i frontend > api > fetchers. 
-
 ## Frontend
 
-Appen er skrevet i React Native, og til state management bruker vi Redux. Vi initialiserte prosjektet og tester appen ved å bruke Expo. I tillegg har vi tatt i bruk ulike biblioteker som for eksempel react-navigation-tab og react-native-material-menu. Hvis man ønsker å se resten, finner man fler i package.json hvor de står listet i dependencies.
+Appen er skrevet i React Native, og til state management bruker vi Redux. 
+Vi initialiserte prosjektet og tester appen ved å bruke Expo. I tillegg har vi tatt i bruk ulike biblioteker som for eksempel react-navigation-tab og react-native-material-menu. Hvis man ønsker å se resten, finner man fler i package.json hvor de står listet i dependencies.
 
 ## Backend
 
@@ -56,6 +48,20 @@ I frontend har vi også en api-mappe som inneholder en fetchers-fil. Denne inneh
 Selve databasen er lik som sist, og det samme er koblingen mellom server og app. Forskjellen er da at vi har ryddet opp i koden så den er mer oversiktelig, og vi har prøvd å få mest mulig gjenbruk av kode så vi slipper å skrive ting dobbelt opp.
 
 Av teknologier til backend har vi brukt Express, MondoDB og Mongoose.
+
+## Detaljert visning
+
+Det er mulighet for detaljert visning ved å trykke på kortelementene. Da kommer det opp en dialogboks med informasjon om stedet, mulighet for å legge til/fjerne som favoritt og lukke boksen. Dialogen kan også lukkes ved å trykke utenfor boksen. 
+Vi har hatt litt problemer med scrolling inni boksen, så hvis det er en lang beskrivelse på setdet, kan det bli vanskelig å se alt fordi skrollingen ikke fungerer som den skal. 
+Vi har prøvd å fikse opp i det uten hell og valgte derfor å bare nedprioritere det grunnet tidsmangel, og at det ikke er den verste feilen. Hadde vi hatt mer tid, skulle vi gjerne sett at det fungerte optimalt. 
+
+## Persistent lagring av data
+
+Som beskrevet i oppgaveteksten har vi brukt AsyncStorage for persistent lagring av data. Inne på den detaljerte visningen av stedene er det en knapp som sier "Save as favourite" eller "Remove as favourite" utfra om dette stedet er brukerens favoritt eller ikke.
+Når den trykkes kommer det opp en alert som gir brukeren bekreftelse på at stedet ble lagret/fjernet som favoritt. Stedet settes/fjesernes da som favoritt i AsyncStorage, og det er dette stedet som vises frem på favorittsiden. 
+Vi vurderte om det skulle være mulig å ha flere favorittsteder, men vi fant ut at det ble litt mye jobb, og mtp tidsfristen, syntes vi det egnet seg fint med muligheten for kun ett favorittsted. 
+Koden som setter, henter og fjerner favoritt ligger i frontend > api > fetchers. 
+
 
 ## Git og kommentering
 

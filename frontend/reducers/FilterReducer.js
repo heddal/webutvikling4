@@ -1,17 +1,17 @@
 const initState = {
-    searchWord: 'all',
-    continent: 'all'
-}
+  searchWord: "all",
+  continent: "all"
+};
 
 const filterReducer = (state = initState, action) => {
-    switch(action.type) {
-        case 'CHANGE_SEARCHWORD':
-            return {searchWord: action.word, continent: state.continent}
-        case 'CONTINENT_FILTER':
-            return {searchWord: state.searchWord, continent: action.continent} 
-        default: return state
-    
-}
-}
+  switch (action.type) {
+    case "CHANGE_SEARCHWORD":
+      return { searchWord: action.word, continent: state.continent };
+    case "CONTINENT_FILTER":
+      return { searchWord: state.searchWord, continent: action.continent };
+    default:
+      return state;
+  }
+};
 
-export default filterReducer
+export default filterReducer;

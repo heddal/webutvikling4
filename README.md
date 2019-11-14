@@ -25,26 +25,25 @@ Når det gjelder søk, så må man søke på hele byen/landet for at det skal ko
 Hadde vi hatt mer tid skulle vi også fått implementert slik at man kunne søke med ufullstendige ord.
 Da kunne man for eksempel søkt "p" og alle landene/byene som starter på eller inneholder "p" dukket opp. Vi har også et issue på dette med label "could be nice".
 
-Det er også et annet issue med label "could be nice" nemlig ordsky, men vi valgte å droppe dette også siden det ikke var et krav. 
-Begge disse issuene ligger i "Open" fordi vi syntes det ble rart å legge dem i "Closed" ettersom de aldri ble påbegynt. 
+Det er også et annet issue med label "could be nice" nemlig ordsky, men vi valgte å droppe dette også siden det ikke var et krav.
+Begge disse issuene ligger i "Open" fordi vi syntes det ble rart å legge dem i "Closed" ettersom de aldri ble påbegynt.
 
 ## Design
 
 Vi har gått for et minimaslistisk design for å gjøre siden oversiktelig og for at den skal være enkel å bruke. Vi har for det meste brukt react sine eksterne biblioteker, og det gjør at siden holder seg konsistent i design.
-Vi prøve også å gjøre designet så likt som nettsiden i prosjekt3 som mulig slik at disse skulle være kosistente med hverandre. 
+Vi prøve også å gjøre designet så likt som nettsiden i prosjekt3 som mulig slik at disse skulle være kosistente med hverandre.
 
 ## Frontend
 
-Appen er skrevet i React Native, og til state management bruker vi Redux. 
+Appen er skrevet i React Native, og til state management bruker vi Redux.
 Vi initialiserte prosjektet og tester appen ved å bruke Expo. I tillegg har vi tatt i bruk ulike biblioteker som for eksempel react-navigation-tab og react-native-material-menu. Hvis man ønsker å se resten, finner man fler i package.json hvor de står listet i dependencies.
 
 ## Backend
 
 Selvom man kunne benytte seg av samme server som sist, valgte vi å gjøre om litt på vår. Dette fordi vi fikk tilbakemeldinger på prosjekt 3 om at vi ikke hadde det beste oppsettet (f.eks fordi vi sorterte i frontend), og dette var ikke like kompatibelt med veldig store datasett. Vi har også ryddet opp i fetchene og laget egen fil som kjører fetchmetoder for å gjøre det hele mer oversiktelig.
 
-Vi har derfor en routers-mappe i backend som inneholder en api-fil. Her ligger all routing, der nesten alle routing funksjoner er gjenbruk fra prosjekt 3. 
-Vi har nå også lagt inn sortering her, dersom det er valgt av bruker. Den sorterer da dersom det er lagret noe om dette i redux. 
-
+Vi har derfor en routers-mappe i backend som inneholder en api-fil. Her ligger all routing, der nesten alle routing funksjoner er gjenbruk fra prosjekt 3.
+Vi har nå også lagt inn sortering her, dersom det er valgt av bruker. Den sorterer da dersom det er lagret noe om dette i redux.
 
 I frontend har vi også en api-mappe som inneholder en fetchers-fil. Denne inneholder en GetData-funksjon som henter riktig data utfra hvilken input den får, for eksempel på riktig søkeord osv.
 
@@ -54,19 +53,18 @@ Av teknologier til backend har vi brukt Express, MondoDB og Mongoose.
 
 ## Detaljert visning
 
-Det er mulighet for detaljert visning ved å trykke på kortelementene. Da kommer det opp en dialogboks med informasjon om stedet, mulighet for å legge til/fjerne som favoritt og lukke boksen. Dialogen kan også lukkes ved å trykke utenfor boksen. 
+Det er mulighet for detaljert visning ved å trykke på kortelementene. Da kommer det opp en dialogboks med informasjon om stedet, mulighet for å legge til/fjerne som favoritt og lukke boksen. Dialogen kan også lukkes ved å trykke utenfor boksen.
 
-Vi har hatt litt problemer med scrolling inni boksen, så hvis det er en lang beskrivelse på setdet, kan det bli vanskelig å se alt fordi skrollingen ikke fungerer som den skal. 
-Vi har prøvd å fikse opp i det uten hell og valgte derfor å bare nedprioritere det grunnet tidsmangel, og at det ikke er den verste feilen. Hadde vi hatt mer tid, skulle vi gjerne sett at det fungerte optimalt. 
+Vi har hatt litt problemer med scrolling inni boksen, så hvis det er en lang beskrivelse på setdet, kan det bli vanskelig å se alt fordi skrollingen ikke fungerer som den skal.
+Vi har prøvd å fikse opp i det uten hell og valgte derfor å bare nedprioritere det grunnet tidsmangel, og at det ikke er den verste feilen. Hadde vi hatt mer tid, skulle vi gjerne sett at det fungerte optimalt.
 
 ## Persistent lagring av data
 
 Som beskrevet i oppgaveteksten har vi brukt AsyncStorage for persistent lagring av data. Inne på den detaljerte visningen av stedene er det en knapp som sier "Save as favourite" eller "Remove as favourite" utfra om dette stedet er brukerens favoritt eller ikke.
-Når den trykkes kommer det opp en alert som gir brukeren bekreftelse på at stedet ble lagret/fjernet som favoritt. Stedet settes/fjesernes da som favoritt i AsyncStorage, og det er dette stedet som vises frem på favorittsiden. 
+Når den trykkes kommer det opp en alert som gir brukeren bekreftelse på at stedet ble lagret/fjernet som favoritt. Stedet settes/fjesernes da som favoritt i AsyncStorage, og det er dette stedet som vises frem på favorittsiden.
 
-Vi vurderte om det skulle være mulig å ha flere favorittsteder, men vi fant ut at det ble litt mye jobb, og mtp tidsfristen, syntes vi det egnet seg fint med muligheten for kun ett favorittsted. 
-Koden som setter, henter og fjerner favoritt ligger i frontend > api > fetchers. 
-
+Vi vurderte om det skulle være mulig å ha flere favorittsteder, men vi fant ut at det ble litt mye jobb, og mtp tidsfristen, syntes vi det egnet seg fint med muligheten for kun ett favorittsted.
+Koden som setter, henter og fjerner favoritt ligger i frontend > api > fetchers.
 
 ## Git og kommentering
 

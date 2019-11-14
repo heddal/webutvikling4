@@ -2,7 +2,7 @@ npm install react-navigation
 
 # Installasjon og bruk
 
-#_todo_:
+For å kjøre prosjektet, skriv inn følgende kommandoer i terminalen:
 
 _note to self: installere mongoose? Expo? Cypress? --save på dem ?_
 

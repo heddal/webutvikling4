@@ -14,11 +14,9 @@ class FavouritePage extends Component {
     componentDidMount(){
         _retrieveFavourite().then((res) => { this.props.setFavourite(res) })
         this.checkFavorite()
-        //GetData(this.state.favourite, "").then((res) => this.setState({dataElement: res.data.data}))
-    }
+        }
 
     checkFavorite(){
-
         _retrieveFavourite().then((res) => {this.setState({favourite: res})});
         setTimeout(()=>GetData(this.state.favourite, "").then((res) => this.setState({dataElement: res.data.data})), 20)
         
@@ -28,6 +26,7 @@ class FavouritePage extends Component {
 
     render() { 
 
+        // checks for changes in favorite
         if (this.state.favourite !== this.props.fav && this.props.fav !== undefined && this.props.fav !== "") {
             this.checkFavorite()
         }
@@ -50,11 +49,7 @@ class FavouritePage extends Component {
             },
         })
 
-       /* console.log(this.state.favourite)
-        console.log("Burde det funke? ")
-        console.log(this.props.fav)
-        console.log(this.props.fav === undefined)*/
-
+        //changes the page's layout if the user have/dont have a favourite
         if (this.props.fav === "" || this.props.fav === undefined){
 
             return(

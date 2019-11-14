@@ -1,8 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import Menu, { MenuItem, MenuDivider } from "react-native-material-menu";
+import Menu, { MenuItem } from "react-native-material-menu";
 import { connect } from "react-redux";
-import { changeSelected } from "../actions/DropdownAction";
 import { continentFilter } from '../actions/ContinentAction';
 import { sortBy } from "../actions/SortingActions";
 
@@ -18,7 +17,6 @@ class Dropdown extends React.PureComponent {
     this.hideMenu();
 
     if ( this.props.dropName === "Continent" ) {
-      //this.props.changeSearchword("oslo")
       this.props.continentFilter(index)
     } else if ( this.props.dropName === "Sort" ) {
       this.props.sortBy(index)
@@ -42,7 +40,7 @@ class Dropdown extends React.PureComponent {
         justifyContent: 'center' , 
         padding: 3,
         marginHorizontal: 45,
-        backgroundColor: 'rgba(63, 81, 181, .5)', /*'#3f51b5',*/
+        backgroundColor: 'rgba(63, 81, 181, .5)',
         borderRadius: 7
 
       }

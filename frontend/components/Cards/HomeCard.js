@@ -134,6 +134,7 @@ class Card extends Component {
                     <ScrollView contentContainerStyle={styles.scrollViewContainer}>
                         <View style={styles.row}>
                             <Image style={styles.Image} source={{uri: dataElement.img}}/>
+                            <Text style = {styles.text, {textTransform: "capitalize"}}> {dataElement.country}/{dataElement.continent} </Text>
                             <Text style={styles.text}>{dataElement.description}</Text>
                         </View>
                     </ScrollView>
@@ -142,8 +143,7 @@ class Card extends Component {
         )} } 
 
 
-const mapStateToProps = (state) => { //give us accsess to the data in store
-
+const mapStateToProps = (state) => {
     return {
       word: state.filter.searchWord,
       continent: state.filter.continent,

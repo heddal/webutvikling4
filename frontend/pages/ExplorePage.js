@@ -33,7 +33,7 @@ class ExplorePage extends Component {
         <Text style={styles.header}> Results from "{this.props.word}"</Text>
         <SearchBox />
         <View style = {{flexDirection: "row", paddingBottom: 3}}>
-          <Dropdown
+          <Dropdown //names, key and options from store (DropDownReducer)
             selected={this.props.dropdowns[0].index}
             dropName={this.props.dropdowns[0].menuName}
             options={this.props.dropdowns[0].options}
@@ -60,7 +60,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 const mapStateToProps = state => {
-  //give us accsess to the data in store
   const filter = state.filter;
   return {
     dropdowns: state.dropdowns,

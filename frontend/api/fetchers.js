@@ -25,7 +25,6 @@ const createURL = (input, sorting) => {
 // Creates proper URL and fetches the data with axios
 export const GetData = async (input, sorting) => {
     var url = createURL(input, sorting)
-    console.log("SORTERING: ", sorting)
     return await axios.get(url).catch((err) => {console.log("Error from axios: ", err)})
 }
 

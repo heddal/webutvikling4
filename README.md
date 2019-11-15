@@ -1,5 +1,3 @@
-npm install react-navigation
-
 # Installasjon og bruk
 
 For å kjøre prosjektet, skriv inn følgende kommandoer i terminalen:
@@ -8,6 +6,8 @@ For å kjøre prosjektet, skriv inn følgende kommandoer i terminalen:
 2. `cd frontend && npm install`
 3. `cd ../backend && npm install`
 4. Deretter kjør `npm start` i backend-mappen
+
+*Dersom dette ikke er tilstrekkelig, se på teknologiene vi har tatt i bruk i frontend og backend.*
 
 # Dokumentasjon
 
@@ -31,7 +31,7 @@ Begge disse issuene ligger i "Open" fordi vi syntes det ble rart å legge dem i 
 ## Design
 
 Vi har gått for et minimaslistisk design for å gjøre siden oversiktelig og for at den skal være enkel å bruke. Vi har for det meste brukt react sine eksterne biblioteker, og det gjør at siden holder seg konsistent i design.
-Vi prøve også å gjøre designet så likt som nettsiden i prosjekt3 som mulig slik at disse skulle være kosistente med hverandre.
+Vi prøve også å gjøre designet så likt som nettsiden i prosjekt 3 som mulig slik at disse skulle være kosistente med hverandre.
 
 ## Frontend
 
@@ -55,7 +55,7 @@ Av teknologier til backend har vi brukt Express, MondoDB og Mongoose.
 
 Det er mulighet for detaljert visning ved å trykke på kortelementene. Da kommer det opp en dialogboks med informasjon om stedet, mulighet for å legge til/fjerne som favoritt og lukke boksen. Dialogen kan også lukkes ved å trykke utenfor boksen.
 
-Vi har hatt litt problemer med scrolling inni boksen, så hvis det er en lang beskrivelse på setdet, kan det bli vanskelig å se alt fordi skrollingen ikke fungerer som den skal.
+Vi har hatt litt problemer med scrolling inni boksen, så hvis det er en lang beskrivelse på stedet, kan det bli vanskelig å se alt fordi skrollingen ikke fungerer som den skal.
 Vi har prøvd å fikse opp i det uten hell og valgte derfor å bare nedprioritere det grunnet tidsmangel, og at det ikke er den verste feilen. Hadde vi hatt mer tid, skulle vi gjerne sett at det fungerte optimalt.
 
 ## Persistent lagring av data
@@ -71,9 +71,9 @@ Koden som setter, henter og fjerner favoritt ligger i frontend > api > fetchers.
 I dette prosjektet er master-branchen "hellig" og skal alltid ha velfungerende og kjørende kode. Til utviklingen har vi opprettet ulike brancher til de forskjellige issuesene, samt merket hver commit med hvilken issue de tilhører. De stedene vi ikke har lagt til dette, er det fordi vi committer en quick fix eller at committen ikke tilhører noen spesiell issue. Vi har også laget merge requests når vi skal merge til master. Dette gjør det lettere å oppdage merge conflicts og at vi ikke merger dårlig kode til master.
 
 Vi har kommentert koden på en saklig måte, og prøvd å supplere koden strategisk og konstruktivt. For å gjøre koden vår enda mer ryddig enn i prosjekt 3, har vi prøvd å gi alle komponenter og funksjoner fornuftige navn slik at man lett skal skjønne hva de er og gjør, tillegg til å gjøre ting konsistent og oversiktlig.
+Til formattering og linting har vi brukt Prettier.
 
 ## Testing
-
-Kjør `npx cypress open` for å teste.
-
-For ende-til-ende-testing har vi brykt Cypress. Da får vi testet applikasjonen tilstrekkelig på en enkel og oversiktlig måte. I tillegg er det lett å følge testene og se hva som skjer.
+For ende-til-ende-testing har vi manuelt testet appen på ulike enheter. På gruppen har vi to med ios og én med andriod, noe som har gitt mulighet til å teste ulike enheter forløpende. 
+I løpet av prosjektet har vi jobbet tett med mobilene for å teste om koden fungerer.
+ På den måten har vi hatt testing kontinuerlig gjennom prosjektet og det har vært lettere å oppdage feil på applikasjonen.

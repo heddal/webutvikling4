@@ -127,7 +127,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(FavouritePage);
+export default connect(mapStateToProps, mapDispatchToProps)(FavouritePage);

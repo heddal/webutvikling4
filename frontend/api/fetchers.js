@@ -4,7 +4,7 @@ import { AsyncStorage } from "react-native";
 // Checks what the input is, and returns the correct fetch-URL
 // based on the input.
 const createURL = (input, sorting) => {
-  const API_URL = "http://it2810-10.idi.ntnu.no:3001/api/";
+  const API_URL = "http://it2810-10.idi.ntnu.no:3002/api/";
   if (input == "") {
     return API_URL + "getData/" + sorting;
   }
@@ -33,7 +33,7 @@ export const GetData = async (input, sorting) => {
 // Update function for when a card is clicked
 // Updates the populatiry of that destination
 export const UpdatePopulatiry = (destinationID, newPopularity) => {
-  axios.post("http://it2810-10.idi.ntnu.no:3001/api/updateData", {
+  axios.post("http://it2810-10.idi.ntnu.no:3002/api/updateData", {
     id: destinationID,
     update: { popularity: newPopularity }
   });

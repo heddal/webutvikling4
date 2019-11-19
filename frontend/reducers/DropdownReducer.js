@@ -7,7 +7,7 @@ const initState = [
   {
     index: 2,
     menuName: "Continent",
-    options: ["All", "Africa", "America", "Asia", "Europe", "Osceania"]
+    options: ["All", "Africa", "America", "Asia", "Europe", "Oceania"]
   }
 ];
 

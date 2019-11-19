@@ -3,9 +3,9 @@ const express = require("express");
 var cors = require("cors");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
-const router = require("./routers/api");
+const router = require("./api");
 
-const API_PORT = 3001;
+const API_PORT = 3002;
 const app = express();
 app.use(cors());
 
